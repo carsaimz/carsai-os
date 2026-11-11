@@ -19,12 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Third-party notice
-
-Carsai OS is built on top of free and open-source software maintained by
-others, including (but not limited to) Debian, the Linux kernel, X.Org,
-XFCE, LightDM and live-build. Each upstream project keeps its own copyright
-and license; nothing in this repository changes or overrides those terms.
