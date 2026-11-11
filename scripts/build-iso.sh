@@ -58,15 +58,11 @@ cp "$THEMES_SRC"/terminal/tilix/*.json "$INC/usr/share/carsai/terminal/"
 
 log "Applying live-build configuration..."
 chmod +x "$BUILD_DIR/auto/config" "$BUILD_DIR/auto/build" "$BUILD_DIR/auto/clean"
-(cd "$BUILD_DIR" && "$SUDO" ./auto/config)
+(cd "$BUILD_DIR" && as_root ./auto/config)
 
 log "Running live-build (30-60 min on the first run)..."
 cd "$BUILD_DIR"
-if [ -n "$SUDO" ]; then
-        $SUDO lb build 2>&1 | tee "$ROOT/build/carsai-os-build.log"
-else
-        lb build 2>&1 | tee "$ROOT/build/carsai-os-build.log"
-fi
+as_root lb build 2>&1 | tee "$ROOT/build/carsai-os-build.log"
 
 log "Done. ISO:"
 ls -lh "$BUILD_DIR"/*.iso
