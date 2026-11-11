@@ -1,0 +1,70 @@
+name: Build ISO
+
+# Builds the Carsai OS live ISO with live-build whenever the image recipe,
+# themes or branding change. Produces a downloadable artifact (7 days).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "build/**"
+      - "themes/**"
+      - "branding/**"
+      - "scripts/**"
+      - ".github/workflows/build-iso.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    name: Shell lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends shellcheck
+
+      - name: Run shellcheck
+        run: shellcheck -x scripts/*.sh themes/selector/carsai-theme-selector
+
+  build-iso:
+    name: Build Carsai OS ISO (bookworm, amd64)
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install live-build toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            live-build debootstrap squashfs-tools xorriso
+
+      - name: Build the ISO
+        run: ./scripts/build-iso.sh
+
+      - name: Normalize artifact name + checksum
+        run: |
+          ISO="$(find build/live -maxdepth 1 -name '*.iso' | head -n1)"
+          test -n "$ISO" || { echo "no ISO produced"; exit 1; }
+          mv "$ISO" carsai-os-bookworm-amd64.iso
+          sha256sum carsai-os-bookworm-amd64.iso > carsai-os-bookworm-amd64.iso.sha256
+          ls -lh carsai-os-bookworm-amd64.iso
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: carsai-os-bookworm-amd64
+          path: |
+            carsai-os-bookworm-amd64.iso
+            carsai-os-bookworm-amd64.iso.sha256
+          retention-days: 7
+          if-no-files-found: error
