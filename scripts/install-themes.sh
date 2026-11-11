@@ -26,15 +26,16 @@ case "$MODE" in
 		WALL_DIR="/usr/share/backgrounds/carsai"
 		SCHEME_DIR="/usr/share/carsai/terminal"
 		BIN_DIR="/usr/local/bin"
-		$SUDO mkdir -p "$THEME_DIR" "$WALL_DIR" "$SCHEME_DIR" "$BIN_DIR"
+		as_root() {
+			if [ -n "$SUDO" ]; then "$SUDO" "$@"; else "$@"; fi
+		}
 		;;
 	user)
-		SUDO=""
 		THEME_DIR="$HOME/.themes"
 		WALL_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/backgrounds/carsai"
 		SCHEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/carsai/terminal"
 		BIN_DIR="${XDG_DATA_HOME:-$HOME/.local/bin}"
-		mkdir -p "$THEME_DIR" "$WALL_DIR" "$SCHEME_DIR" "$BIN_DIR"
+		as_root() { "$@"; }
 		;;
 	*)
 		echo "usage: $0 [user|system]" >&2
@@ -42,25 +43,23 @@ case "$MODE" in
 		;;
 esac
 
+as_root mkdir -p -- "${THEME_DIR:?}" "${WALL_DIR:?}" "${SCHEME_DIR:?}" "${BIN_DIR:?}"
+
 for src in "${!THEMES[@]}"; do
 	dest="${THEMES[$src]}"
 	log "theme: $src -> $THEME_DIR/$dest"
-	[ -n "$SUDO" ] && $SUDO rm -rf "$THEME_DIR/$dest" || rm -rf "$THEME_DIR/$dest"
-	[ -n "$SUDO" ] && $SUDO cp -r "$ROOT/themes/$src" "$THEME_DIR/$dest" \
-		|| cp -r "$ROOT/themes/$src" "$THEME_DIR/$dest"
+	as_root rm -rf -- "${THEME_DIR:?}/$dest"
+	as_root cp -r "$ROOT/themes/$src" "$THEME_DIR/$dest"
 done
 
 log "wallpapers -> $WALL_DIR"
-[ -n "$SUDO" ] && $SUDO cp "$ROOT"/branding/wallpapers/*.png "$WALL_DIR/" \
-	|| cp "$ROOT"/branding/wallpapers/*.png "$WALL_DIR/"
+as_root cp "$ROOT"/branding/wallpapers/*.png "${WALL_DIR:?}/"
 
 log "terminal schemes -> $SCHEME_DIR"
-[ -n "$SUDO" ] && $SUDO cp "$ROOT"/themes/terminal/xfce4/*.theme "$SCHEME_DIR/" \
-	|| cp "$ROOT"/themes/terminal/xfce4/*.theme "$SCHEME_DIR/"
+as_root cp "$ROOT"/themes/terminal/xfce4/*.theme "${SCHEME_DIR:?}/"
 
 log "selector -> $BIN_DIR/carsai-theme-selector"
-[ -n "$SUDO" ] && $SUDO install -m 0755 "$ROOT/themes/selector/carsai-theme-selector" "$BIN_DIR/" \
-	|| install -m 0755 "$ROOT/themes/selector/carsai-theme-selector" "$BIN_DIR/"
+as_root install -m 0755 "$ROOT/themes/selector/carsai-theme-selector" "${BIN_DIR:?}/"
 
 log "done. run: $BIN_DIR/carsai-theme-selector"
 log "(note: xfconf-query only works inside an XFCE session)"

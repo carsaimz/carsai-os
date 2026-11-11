@@ -26,6 +26,14 @@ log() { printf '\n[carsai-os] %s\n' "$*"; }
 
 if [ "$(id -u)" -eq 0 ]; then SUDO=""; else SUDO="sudo"; fi
 
+as_root() {
+        if [ -n "$SUDO" ]; then
+                "$SUDO" "$@"
+        else
+                "$@"
+        fi
+}
+
 log "Syncing GTK themes into includes tree..."
 mkdir -p "$INC/usr/share/themes"
 for src in "${!THEMES[@]}"; do
