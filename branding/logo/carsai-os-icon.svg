@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Carsai OS - brand icon (placeholder)
+
+  NOTE: This is a temporary icon created as part of the initial scaffold.
+  It will be replaced by the official Carsai Mozambique artwork.
+  Replacement: overwrite this file keeping the name "carsai-os-icon.svg".
+-->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carsai OS icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0b14"/>
+      <stop offset="1" stop-color="#141428"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00e5ff"/>
+      <stop offset="1" stop-color="#00b8d4"/>
+    </linearGradient>
+    <linearGradient id="magenta" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff2ec4"/>
+      <stop offset="1" stop-color="#d500f9"/>
+    </linearGradient>
+    <filter id="glow-cyan" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-magenta" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rounded dark background -->
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="none" stroke="#1f2a44" stroke-width="4"/>
+
+  <!-- Terminal window top bar -->
+  <line x1="80" y1="128" x2="432" y2="128" stroke="#232343" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="112" cy="128" r="12" fill="#ff2ec4" opacity="0.9"/>
+  <circle cx="156" cy="128" r="12" fill="#ffd600" opacity="0.9"/>
+  <circle cx="200" cy="128" r="12" fill="#00e5ff" opacity="0.9"/>
+
+  <!-- Neon prompt chevron -->
+  <path d="M148 218 L242 296 L148 374" fill="none" stroke="url(#cyan)" stroke-width="36"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-cyan)"/>
+
+  <!-- Neon cursor underscore -->
+  <rect x="286" y="356" width="112" height="28" rx="14" fill="url(#magenta)" filter="url(#glow-magenta)"/>
+</svg>
