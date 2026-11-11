@@ -1,0 +1,36 @@
+# --- live-build working output (generated, never commit) ---
+build/live/.build/
+build/live/cache/
+build/live/chroot/
+build/live/binary/
+build/live/.lock
+build/live/config/includes.chroot/usr/share/themes/
+build/live/config/includes.chroot/usr/share/backgrounds/
+build/live/config/includes.chroot/usr/local/bin/
+build/*.log
+build/live/*.iso
+build/live/live-image-*.img
+
+# --- any ISO / disk image anywhere ---
+*.iso
+*.img
+*.zip
+
+# --- secrets: NEVER commit tokens or keys ---
+*.pem
+*.key
+.env
+*token*
+
+# --- editors / OS noise ---
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# --- python noise (for tooling scripts) ---
+__pycache__/
+*.pyc
+.venv/
