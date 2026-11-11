@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Carsai Light Tech
+Comment=Carsai OS theme - light with tech accents
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Carsai-Light-Tech
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close:menu:minimize,maximize

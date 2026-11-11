@@ -1,0 +1,108 @@
+/*
+ * Carsai OS - Carsai Dark Minimal (GTK3)
+ * Part of the Carsai OS theme layer - MIT license.
+ * Installed to /usr/share/themes/Carsai-Dark-Minimal/gtk-3.0/gtk.css
+ */
+@define-color theme_bg_color #101418;
+@define-color theme_fg_color #C8D0D8;
+@define-color theme_base_color #12171D;
+@define-color theme_text_color #C8D0D8;
+@define-color theme_selected_bg_color #4FC3F7;
+@define-color theme_selected_fg_color #0D1117;
+@define-color theme_unfocused_bg_color #161B21;
+@define-color theme_unfocused_base_color #161B21;
+@define-color theme_unfocused_fg_color #7B8794;
+@define-color borders #262E37;
+@define-color success_color #66BB6A;
+@define-color warning_color #FFB74D;
+@define-color error_color #EF5350;
+
+* { outline-color: alpha(#4FC3F7, 0.6); outline-style: dashed; outline-offset: -3px; }
+
+window, .background {
+	background-color: @theme_bg_color;
+	color: @theme_fg_color;
+}
+
+/* Title bar */
+headerbar {
+	background: #151A20;
+	color: @theme_fg_color;
+	border-bottom: 1px solid rgba(79,195,247,0.35);
+}
+headerbar:backdrop { background: #161B21; }
+headerbar title { font-weight: 600; }
+headerbar button.titlebutton { min-width: 22px; min-height: 22px; }
+
+/* Buttons */
+button {
+	background-color: #161B21;
+	color: @theme_fg_color;
+	border: 1px solid #262E37;
+	border-radius: 6px;
+	padding: 4px 10px;
+}
+button:hover { background-color: #1C232B; border-color: rgba(79,195,247,0.35); }
+button:active { background-color: #4FC3F7; color: #0D1117; }
+button.suggested-action { background-color: #4FC3F7; color: #0D1117; border-color: #4FC3F7; }
+button.destructive-action { background-color: #EF5350; color: #FFFFFF; border-color: #EF5350; }
+button:disabled { color: #7B8794; }
+
+/* Entries */
+entry, spinbutton {
+	background-color: #12171D;
+	color: @theme_fg_color;
+	border: 1px solid #262E37;
+	border-radius: 6px;
+	padding: 4px 8px;
+	caret-color: #4FC3F7;
+}
+entry:focus { border-color: #4FC3F7; box-shadow: inset 0 0 0 1px rgba(79,195,247,0.35); }
+
+/* Lists and trees */
+treeview.view, list { background-color: #12171D; color: @theme_fg_color; }
+treeview.view:selected, list row:selected { background-color: #4FC3F7; color: #0D1117; }
+
+/* Sidebars */
+sidebar, placessidebar, stacksidebar { background-color: #161B21; }
+sidebar row:hover { background-color: #1C232B; }
+sidebar row:selected { background-color: #4FC3F7; color: #0D1117; }
+
+/* Notebook (tabs) */
+notebook > header { background-color: #161B21; border-color: #262E37; }
+notebook tab:checked { color: @theme_fg_color; }
+
+/* Menus */
+menubar { background-color: #101418; }
+menu, .menu { background-color: #161B21; border: 1px solid #262E37; }
+menu item:hover { background-color: #4FC3F7; color: #0D1117; }
+
+/* Tooltips */
+tooltip {
+	background-color: #161B21;
+	color: #C8D0D8;
+	border: 1px solid rgba(79,195,247,0.35);
+	border-radius: 4px;
+}
+
+/* Scrollbars */
+scrollbar { background-color: transparent; }
+scrollbar slider { background-color: #37424D; border-radius: 10px; min-width: 6px; min-height: 6px; }
+scrollbar slider:hover { background-color: #4FC3F7; }
+
+/* Switches */
+switch { background-color: #1C232B; }
+switch:checked { background-color: #4FC3F7; }
+switch slider { background-color: #C8D0D8; }
+
+/* Progress */
+progressbar progress { background-color: #4FC3F7; }
+progressbar trough { background-color: #1C232B; }
+
+/* XFCE panel */
+.xfce4-panel {
+	background-color: rgba(16,20,24,0.94);
+	color: #C8D0D8;
+}
+.xfce4-panel button { background: transparent; border: none; color: #C8D0D8; }
+.xfce4-panel button:hover { background-color: rgba(79,195,247,0.35); }

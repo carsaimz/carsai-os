@@ -1,0 +1,178 @@
+#!/usr/bin/env bash
+# carsai-theme-selector - apply Carsai OS themes (GTK + wallpaper + terminal).
+#
+# Usage:
+#   carsai-theme-selector              interactive menu
+#   carsai-theme-selector --list       list available themes
+#   carsai-theme-selector --set KEY    apply theme directly (neon|dark|retrowave|light)
+#   carsai-theme-selector --first-run  apply default once (used by ISO autostart)
+#
+# No dependencies beyond XFCE (xfconf-query/xfdesktop) + bash.
+set -euo pipefail
+
+VERSION="0.1.0"
+DEFAULT_KEY="neon"
+MARKER="$HOME/.config/carsai/first-run-done"
+
+# Search paths
+THEME_DIRS=("/usr/share/themes" "$HOME/.themes" "${XDG_DATA_HOME:-$HOME/.local/share}/themes")
+WALL_DIRS=("/usr/share/backgrounds/carsai" "${XDG_DATA_HOME:-$HOME/.local/share}/backgrounds/carsai")
+SCHEME_DIRS=("/usr/share/carsai/terminal" "${XDG_DATA_HOME:-$HOME/.local/share}/carsai/terminal")
+
+# key|GTK theme name|wallpaper file|terminal scheme|description
+THEMES=(
+	"neon|Carsai-Neon|carsai-neon.png|carsai-neon.theme|cyberpunk neon (default)"
+	"dark|Carsai-Dark-Minimal|carsai-dark-minimal.png|carsai-dark-minimal.theme|sober dark, productivity"
+	"retrowave|Carsai-Retrowave|carsai-retrowave.png|carsai-retrowave.theme|synthwave / outrun"
+	"light|Carsai-Light-Tech|carsai-light-tech.png|carsai-light-tech.theme|light with tech accents"
+)
+
+first_field() { printf '%s\n' "${1%%|*}"; }
+field() { # field N "a|b|c"
+	local IFS='|'
+	read -r -a parts <<<"$2"
+	printf '%s\n' "${parts[$(( $1 ))]}"
+}
+
+find_in_dirs() { # find_in_dirs "filename" dir1 dir2...
+	local f="$1"; shift
+	for d in "$@"; do
+		if [ -e "$d/$f" ]; then printf '%s\n' "$d/$f"; return 0; fi
+	done
+	return 1
+}
+
+apply_terminal_colors() {
+	local scheme="$1"
+	local rc_dir="$HOME/.config/xfce4/terminal"
+	local rc="$rc_dir/terminalrc"
+	mkdir -p "$rc_dir"
+	[ -f "$rc" ] || printf '[Configuration]\n' > "$rc"
+
+	local palette="" i c
+	for i in $(seq 1 16); do
+		c="$(grep -m1 "^ColorPalette${i}=" "$scheme" | cut -d= -f2- || true)"
+		if [ -n "$c" ]; then palette="${palette:+$palette,}$c"; fi
+	done
+	local fg bg cursor
+	fg="$(grep -m1 '^ColorForeground=' "$scheme" | cut -d= -f2- || true)"
+	bg="$(grep -m1 '^ColorBackground=' "$scheme" | cut -d= -f2- || true)"
+	cursor="$(grep -m1 '^ColorCursor=' "$scheme" | cut -d= -f2- || true)"
+
+	grep -vE '^(ColorPalette|ColorForeground|ColorBackground|ColorCursor|ColorCursorForeground|ColorCursorUseDefault|TabActivityColor)=' \
+		"$rc" > "$rc.tmp" || true
+	{
+		cat "$rc.tmp"
+		[ -n "$fg" ] && echo "ColorForeground=$fg"
+		[ -n "$bg" ] && echo "ColorBackground=$bg"
+		if [ -n "$cursor" ]; then
+			echo "ColorCursor=$cursor"
+			echo "ColorCursorUseDefault=FALSE"
+		fi
+		[ -n "$palette" ] && echo "ColorPalette=$palette"
+	} >> "$rc"
+	rm -f "$rc.tmp"
+}
+
+apply_theme() {
+	local entry="$1"
+	local key gtk wall scheme
+	key="$(first_field "$entry")"
+	gtk="$(field 1 "$entry")"
+	wall="$(field 2 "$entry")"
+	scheme="$(field 3 "$entry")"
+
+	local theme_dir
+	theme_dir="$(find_in_dirs "$gtk" "${THEME_DIRS[@]}")" || {
+		echo "error: GTK theme '$gtk' not found. Install themes first (scripts/install-themes.sh)." >&2
+		exit 1
+	}
+
+	# 1) GTK theme (xsettings)
+	xfconf-query -c xsettings -p /Net/ThemeName -n -t string -s "$gtk" >/dev/null
+
+	# 2) Wallpaper on every detected monitor/workspace property
+	local wall_file prop
+	wall_file="$(find_in_dirs "$wall" "${WALL_DIRS[@]}")" || wall_file=""
+	if [ -n "$wall_file" ] && command -v xfconf-query >/dev/null 2>&1; then
+		while IFS= read -r prop; do
+			[ -n "$prop" ] || continue
+			xfconf-query -c xfce4-desktop -p "$prop" -n -t string -s "$wall_file" >/dev/null 2>&1 || true
+			xfconf-query -c xfce4-desktop -p "${prop%last-image}image-style" -n -t int -s 5 >/dev/null 2>&1 || true
+		done < <(xfconf-query -c xfce4-desktop -l 2>/dev/null | grep '/last-image$' || true)
+		command -v xfdesktop >/dev/null 2>&1 && xfdesktop --reload >/dev/null 2>&1 || true
+	fi
+
+	# 3) Terminal colours
+	local scheme_file
+	scheme_file="$(find_in_dirs "$scheme" "${SCHEME_DIRS[@]}")" || scheme_file=""
+	if [ -n "$scheme_file" ]; then
+		apply_terminal_colors "$scheme_file"
+	fi
+
+	echo "Applied theme: $key ($gtk)"
+	[ -n "$scheme_file" ] && echo "  terminal: $scheme_file" || echo "  terminal: scheme not found (skipped)"
+	[ -n "$wall_file" ] && echo "  wallpaper: $wall_file" || echo "  wallpaper: not found (skipped)"
+}
+
+theme_entry_by_key() {
+	local want="${1,,}"
+	for t in "${THEMES[@]}"; do
+		local k; k="$(first_field "$t")"
+		if [ "$k" = "$want" ] || [ "carsai-$k" = "$want" ]; then
+			printf '%s\n' "$t"; return 0
+		fi
+	done
+	return 1
+}
+
+cmd_first_run() {
+	if [ -e "$MARKER" ]; then
+		exit 0
+	fi
+	local entry
+	entry="$(theme_entry_by_key "$DEFAULT_KEY")" || exit 0
+	apply_theme "$entry" >/dev/null
+	mkdir -p "$(dirname "$MARKER")"
+	touch "$MARKER"
+}
+
+cmd_list() {
+	local t
+	for t in "${THEMES[@]}"; do
+		printf '%-10s -> %-20s (%s)\n' "$(first_field "$t")" "$(field 1 "$t")" "$(field 4 "$t")"
+	done
+}
+
+cmd_menu() {
+	echo "==============================="
+	echo "  Carsai OS Theme Selector v$VERSION"
+	echo "==============================="
+	local i=1 t
+	for t in "${THEMES[@]}"; do
+		printf ' %d) %-22s (%s)\n' "$i" "$(field 1 "$t")" "$(field 4 "$t")"
+		i=$((i + 1))
+	done
+	printf ' 0) Exit\n'
+	local choice
+	read -r -p "Choose a theme [0-$(( ${#THEMES[@]} ))]: " choice
+	case "$choice" in
+		0) exit 0 ;;
+		''|*[!0-9]*) echo "invalid choice" >&2; exit 1 ;;
+	esac
+	if [ "$choice" -ge 1 ] && [ "$choice" -le "${#THEMES[@]}" ]; then
+		apply_theme "${THEMES[$((choice - 1))]}"
+	else
+		echo "invalid choice" >&2; exit 1
+	fi
+}
+
+case "${1:-}" in
+	--list)    cmd_list ;;
+	--set)     [ -n "${2:-}" ] || { echo "usage: $0 --set KEY" >&2; exit 1; }
+	           entry="$(theme_entry_by_key "$2")" || { echo "unknown theme: $2" >&2; exit 1; }
+	           apply_theme "$entry" ;;
+	--first-run) cmd_first_run ;;
+	-h|--help) sed -n '2,10p' "$0" | sed 's/^# //;s/^#$//'; echo; echo "  keys:"; cmd_list ;;
+	*)         cmd_menu ;;
+esac

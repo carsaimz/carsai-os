@@ -1,0 +1,33 @@
+{
+  "name": "Carsai Neon",
+  "comment": "Carsai OS default theme - cyberpunk neon dark (Tilix scheme)",
+  "use-theme-colors": false,
+  "foreground-color": null,
+  "background-color": null,
+  "background-darkness": 0.95,
+  "cursor-background-color": null,
+  "cursor-foreground-color": null,
+  "use-cursor-system-colors": false,
+  "palette": [
+    "#101018",
+    "#ff1744",
+    "#00e676",
+    "#ffd600",
+    "#448aff",
+    "#ff2ec4",
+    "#00e5ff",
+    "#c6ccec",
+    "#3a3a55",
+    "#ff5c7a",
+    "#63f7a6",
+    "#ffe763",
+    "#7baaff",
+    "#ff6fd8",
+    "#6ff2ff",
+    "#f2f5ff"
+  ],
+  "foreground_color": "#e0e7ff",
+  "background_color": "#0a0a12",
+  "cursor_background_color": "#ff2ec4",
+  "cursor_foreground_color": "#0a0a12"
+}

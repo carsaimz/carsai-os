@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Carsai Retrowave
+Comment=Carsai OS theme - synthwave / outrun gradients
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Carsai-Retrowave
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close:menu:minimize,maximize

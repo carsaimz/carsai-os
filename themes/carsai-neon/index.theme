@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Carsai Neon
+Comment=Carsai OS default theme - cyberpunk neon dark
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Carsai-Neon
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close:menu:minimize,maximize

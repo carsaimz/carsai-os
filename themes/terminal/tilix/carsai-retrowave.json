@@ -1,0 +1,33 @@
+{
+  "name": "Carsai Retrowave",
+  "comment": "Carsai OS theme - synthwave / outrun gradients (Tilix scheme)",
+  "use-theme-colors": false,
+  "foreground-color": null,
+  "background-color": null,
+  "background-darkness": 0.95,
+  "cursor-background-color": null,
+  "cursor-foreground-color": null,
+  "use-cursor-system-colors": false,
+  "palette": [
+    "#1c0e2d",
+    "#ff4c68",
+    "#05ffa1",
+    "#fffb96",
+    "#7c4dff",
+    "#ff71ce",
+    "#01cdcd",
+    "#c9a0dc",
+    "#3d2a55",
+    "#ff79c6",
+    "#39ff9c",
+    "#fff7ae",
+    "#9f7cff",
+    "#ff9de4",
+    "#4ff2f2",
+    "#ffe3f1"
+  ],
+  "foreground_color": "#ffd9ec",
+  "background_color": "#170b26",
+  "cursor_background_color": "#01cdcd",
+  "cursor_foreground_color": "#170b26"
+}

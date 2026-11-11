@@ -1,0 +1,33 @@
+{
+  "name": "Carsai Dark Minimal",
+  "comment": "Carsai OS theme - sober dark, for productivity (Tilix scheme)",
+  "use-theme-colors": false,
+  "foreground-color": null,
+  "background-color": null,
+  "background-darkness": 0.95,
+  "cursor-background-color": null,
+  "cursor-foreground-color": null,
+  "use-cursor-system-colors": false,
+  "palette": [
+    "#12171d",
+    "#ef5350",
+    "#66bb6a",
+    "#ffb74d",
+    "#42a5f5",
+    "#ab47bc",
+    "#4fc3f7",
+    "#aeb9c2",
+    "#37424d",
+    "#ff8a80",
+    "#81c784",
+    "#ffcc80",
+    "#64b5f6",
+    "#ce93d8",
+    "#80deea",
+    "#eceff1"
+  ],
+  "foreground_color": "#c8d0d8",
+  "background_color": "#101418",
+  "cursor_background_color": "#4fc3f7",
+  "cursor_foreground_color": "#101418"
+}

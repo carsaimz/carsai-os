@@ -1,0 +1,23 @@
+; Carsai OS xfce4-terminal colour scheme
+SchemeName=Carsai Retrowave
+ColorForeground=#ffd9ec
+ColorBackground=#170b26
+ColorCursor=#01cdcd
+ColorCursorForeground=#170b26
+TabActivityColor=#01cdcd
+ColorPalette1=#1c0e2d
+ColorPalette2=#ff4c68
+ColorPalette3=#05ffa1
+ColorPalette4=#fffb96
+ColorPalette5=#7c4dff
+ColorPalette6=#ff71ce
+ColorPalette7=#01cdcd
+ColorPalette8=#c9a0dc
+ColorPalette9=#3d2a55
+ColorPalette10=#ff79c6
+ColorPalette11=#39ff9c
+ColorPalette12=#fff7ae
+ColorPalette13=#9f7cff
+ColorPalette14=#ff9de4
+ColorPalette15=#4ff2f2
+ColorPalette16=#ffe3f1

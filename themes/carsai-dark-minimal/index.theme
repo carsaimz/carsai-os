@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Carsai Dark Minimal
+Comment=Carsai OS theme - sober dark, for productivity
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Carsai-Dark-Minimal
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close:menu:minimize,maximize

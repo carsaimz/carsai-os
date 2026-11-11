@@ -1,0 +1,23 @@
+; Carsai OS xfce4-terminal colour scheme
+SchemeName=Carsai Neon
+ColorForeground=#e0e7ff
+ColorBackground=#0a0a12
+ColorCursor=#ff2ec4
+ColorCursorForeground=#0a0a12
+TabActivityColor=#ff2ec4
+ColorPalette1=#101018
+ColorPalette2=#ff1744
+ColorPalette3=#00e676
+ColorPalette4=#ffd600
+ColorPalette5=#448aff
+ColorPalette6=#ff2ec4
+ColorPalette7=#00e5ff
+ColorPalette8=#c6ccec
+ColorPalette9=#3a3a55
+ColorPalette10=#ff5c7a
+ColorPalette11=#63f7a6
+ColorPalette12=#ffe763
+ColorPalette13=#7baaff
+ColorPalette14=#ff6fd8
+ColorPalette15=#6ff2ff
+ColorPalette16=#f2f5ff

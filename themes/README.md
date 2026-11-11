@@ -1,0 +1,68 @@
+# Carsai OS — camada de temas
+
+A identidade visual do Carsai OS vive aqui. Quatro temas GTK3 completos,
+esquemas de cores de terminal e um seletor sem dependências externas.
+
+## Estrutura
+
+```
+themes/
+├── carsai-neon/            # tema padrão (cyberpunk/néon escuro)
+├── carsai-dark-minimal/    # escuro sóbrio (produtividade)
+├── carsai-retrowave/       # synthwave/outrun
+├── carsai-light-tech/      # claro com acentos tech
+│   ├── gtk-3.0/gtk.css     # folha de estilos GTK3
+│   └── index.theme         # metadados
+├── terminal/
+│   ├── xfce4/*.theme       # esquemas de cores do xfce4-terminal
+│   └── tilix/*.json        # esquemas de cores do Tilix
+└── selector/
+    └── carsai-theme-selector   # CLI: aplica GTK + wallpaper + terminal
+```
+
+## Nomes instalados
+
+Na ISO (via `scripts/build-iso.sh`), os temas são instalados com nome com
+hífen — o nome que o xfconf espera em `/Net/ThemeName`:
+
+| Pasta no repo | Nome instalado |
+| --- | --- |
+| `themes/carsai-neon` | `/usr/share/themes/Carsai-Neon` |
+| `themes/carsai-dark-minimal` | `/usr/share/themes/Carsai-Dark-Minimal` |
+| `themes/carsai-retrowave` | `/usr/share/themes/Carsai-Retrowave` |
+| `themes/carsai-light-tech` | `/usr/share/themes/Carsai-Light-Tech` |
+
+## Seletor
+
+```bash
+carsai-theme-selector            # menu interativo
+carsai-theme-selector --set neon # aplicação directa (neon|dark|retrowave|light)
+carsai-theme-selector --list     # listar
+```
+
+Na ISO, `/usr/local/bin/carsai-theme-selector` corre com `--first-run` no
+primeiro login (autostart do skel) e aplica o **Carsai Neon** uma única vez.
+
+## Testar sem construir a ISO
+
+```bash
+./scripts/install-themes.sh user    # instala em ~/.themes etc. (sem root)
+~/.local/bin/carsai-theme-selector
+```
+
+## Como acrescentar um tema novo
+
+1. Copia uma pasta existente (`cp -r themes/carsai-dark-minimal themes/carsai-meu-tema`).
+2. Edita as `@define-color` no `gtk-3.0/gtk.css` (a paleta no topo controla tudo).
+3. Acrescenta o mapeamento em `themes/selector/carsai-theme-selector` (array
+   `THEMES`), em `scripts/build-iso.sh` (mapa `THEMES`) e em
+   `scripts/install-themes.sh`.
+4. Cria o wallpaper correspondente em `branding/wallpapers/carsai-meu-tema.png`
+   e o esquema de terminal (pode derivar de um existente).
+
+## Limitações conhecidas (Fase 2 no roteiro)
+
+- **xfwm4**: ainda usa o tema de janelas por omissão (barra de título não
+  tematizada). Um tema xfwm4 com assets próprios está planeado.
+- **GTK4/libadwaita**: não incluído nesta fase (XFCE é GTK3).
+- **Ícones**: Adwaita por omissão; tema de ícones Carsai previsto na Fase 2.
