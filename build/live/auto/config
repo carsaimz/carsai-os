@@ -5,22 +5,21 @@
 set -e
 
 lb config noauto \
-	--mode debian \
-	--distribution bookworm \
-	--archive-areas "main contrib non-free non-free-firmware" \
-	--architecture amd64 \
-	--apt-recommends false \
-	--binary-images iso-hybrid \
-	--bootappend-live "boot=live components quiet" \
-	--debian-installer none \
-	--linux-packages linux-image-amd64 \
-	--packages-lists carsai-os \
-	--iso-application "Carsai OS" \
-	--iso-publisher "Carsai Mozambique; https://github.com/carsaimz; https://github.com/carsaimz/carsai-os" \
-	--iso-volume "CARSAIOS" \
-	--mirror-bootstrap http://deb.debian.org/debian \
-	--mirror-chroot http://deb.debian.org/debian \
-	--mirror-chroot-security http://security.debian.org/debian-security \
-	--mirror-binary http://deb.debian.org/debian \
-	--mirror-binary-security http://security.debian.org/debian-security \
-	"${@}"
+        --mode debian \
+        --distribution bookworm \
+        --archive-areas "main contrib non-free non-free-firmware" \
+        --architecture amd64 \
+        --apt-recommends false \
+        --binary-images iso-hybrid \
+        --bootappend-live "boot=live components quiet" \
+        --debian-installer none \
+        --linux-packages linux-image-amd64 \
+        --iso-application "Carsai OS" \
+        --iso-publisher "Carsai Mozambique; https://github.com/carsaimz; https://github.com/carsaimz/carsai-os" \
+        --iso-volume "CARSAIOS" \
+        --mirror-bootstrap http://deb.debian.org/debian \
+        --mirror-chroot http://deb.debian.org/debian \
+        --mirror-chroot-security http://security.debian.org/debian-security \
+        --mirror-binary http://deb.debian.org/debian \
+        --mirror-binary-security http://security.debian.org/debian-security \
+        "${@}"

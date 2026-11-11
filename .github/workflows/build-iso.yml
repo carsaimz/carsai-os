@@ -42,14 +42,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install live-build toolchain
+      - name: Build the ISO (inside debian:trixie container)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            live-build debootstrap squashfs-tools xorriso
-
-      - name: Build the ISO
-        run: ./scripts/build-iso.sh
+          docker run --rm \
+            -v "$PWD":/repo -w /repo \
+            debian:trixie \
+            bash -c '
+              set -euo pipefail
+              apt-get update -qq
+              DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+                live-build debootstrap squashfs-tools xorriso
+              live-build --version 2>/dev/null || true
+              ./scripts/build-iso.sh
+            '
 
       - name: Normalize artifact name + checksum
         run: |

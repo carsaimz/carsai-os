@@ -34,3 +34,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 .venv/
+
+# --- live-build auto-generated (lb config creates these) ---
+build/live/config/package-lists/live.list.chroot
