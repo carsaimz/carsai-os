@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Carsai OS - run the live-build (image assembly). Assumes auto/config was run.
+set -euo pipefail
+lb build noauto "$@" 2>&1 | tee build.log

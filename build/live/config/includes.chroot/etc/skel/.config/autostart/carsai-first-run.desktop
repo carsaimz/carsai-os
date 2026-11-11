@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Carsai Theme Setup
+Comment=Applies the default Carsai Neon look on first login
+Exec=/usr/local/bin/carsai-theme-selector --first-run
+Terminal=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

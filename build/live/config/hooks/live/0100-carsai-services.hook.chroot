@@ -1,0 +1,16 @@
+#!/bin/sh
+# Carsai OS - disable services that are not essential for a lean desktop.
+# Runs inside the chroot during image assembly.
+# Nothing here is critical: every disable is guarded and non-fatal.
+set -e
+
+SERVICES="cups cups-browsed bluetooth modemmanager avahi-daemon pppd-dns"
+
+for svc in $SERVICES; do
+	if systemctl list-unit-files 2>/dev/null | grep -q "^${svc}\.service"; then
+		echo "carsai: disabling ${svc}.service"
+		systemctl disable "${svc}.service" 2>/dev/null || true
+	fi
+done
+
+echo "carsai: service trim complete."

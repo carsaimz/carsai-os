@@ -1,0 +1,42 @@
+## Carsai OS - core package list (Debian bookworm, amd64)
+## Goal: full XFCE desktop, lean services, <= 600 MB idle RAM.
+## Built with --apt-recommends false (see auto/config), which keeps
+## "suggested" packages out of the image.
+
+### X + XFCE desktop
+xorg
+xfce4
+xfce4-terminal
+thunar-archive-plugin
+lightdm
+lightdm-gtk-greeter
+network-manager-gnome
+gvfs
+xdg-user-dirs
+accountsservice
+
+### Text editor + terminal tooling
+mousepad
+nano
+vim
+htop
+bash-completion
+
+### Basic userland
+curl
+wget
+git
+unzip
+zip
+xz-utils
+
+### Fonts: identity (JetBrains Mono) + coverage (Noto)
+fonts-noto-core
+fonts-jetbrains-mono
+
+### Memory management for low-RAM machines
+zram-tools
+
+### Firmware for common Wi-Fi/GPU hardware on real machines
+firmware-linux-free
+firmware-misc-nonfree

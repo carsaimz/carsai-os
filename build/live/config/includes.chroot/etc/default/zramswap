@@ -1,0 +1,6 @@
+# Carsai OS - zram configuration (compressed RAM swap)
+# 25% of RAM compressed with zstd gives low-RAM machines breathing room
+# without the disk cost of a classic swap partition.
+ALGO=zstd
+PERCENT=25
+PRIORITY=100

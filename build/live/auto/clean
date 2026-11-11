@@ -1,0 +1,5 @@
+#!/bin/sh
+# Carsai OS - clean live-build working area
+set -e
+lb clean noauto "$@"
+rm -f build.log
