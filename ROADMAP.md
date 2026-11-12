@@ -63,7 +63,7 @@
    `branding/logo/carsai-os-icon.svg`).
 4. Publicar **v0.1.1-alpha**: `git tag v0.1.1-alpha && git push origin v0.1.1-alpha`
    (o workflow *Release ISO* anexa a ISO + sha256 ao release automaticamente).
-5. Site oficial: <https://carsaios.vercel.app> (repo `carsai-os-site`).
+5. Site oficial: <https://carsaios.vercel.app> (deploy na Vercel).
 
 ## Como decidimos o que entra
 

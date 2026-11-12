@@ -1,10 +1,10 @@
 # Documentação técnica — Carsai OS
 
-> Projeto Carsai Mozambique · Distribuição Linux leve baseada em Debian
+> Carsai OS · Distribuição Linux leve baseada em Debian
 
 Esta documentação descreve a arquitectura, as decisões técnicas e o roteiro do
-Carsai OS. Está escrita em português porque o projecto nasce em Moçambique; o
-código, os comentários e os commits seguem em inglês.
+Carsai OS. Está escrita em português; o código, os comentários e os commits
+seguem em inglês.
 
 ## Índice
 

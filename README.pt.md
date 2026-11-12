@@ -20,9 +20,9 @@ O **Carsai OS** é uma distribuição Linux personalizada, derivada do **Debian 
 
 Não é objectivo competir com distros generalistas em quantidade de recursos: a meta é uma experiência **coesa, estilosa e eficiente** em hardware modesto, com um caminho planeado para compatibilidade com aplicações **Windows (.exe)** e **Android (.apk)**.
 
-> "Carsai" é o guarda-chuva do projecto (**Carsai Mozambique**) e não tem relação com IA. Os artefactos podem chamar-se *Carsai OS* (produto) ou *Carsai LinuOs* (variação); o prefixo é a identidade.
+> "Carsai" é a marca-guarda-chuva do projecto e não tem relação com IA. Os artefactos podem chamar-se *Carsai OS* (produto) ou *Carsai LinuOs* (variação); o prefixo é a identidade.
 
-> Site oficial: **https://carsaios.vercel.app** (repo: `carsai-os-site`, privado).
+> Site oficial: **https://carsaios.vercel.app**.
 
 ## Metas
 

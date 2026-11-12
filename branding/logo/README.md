@@ -6,8 +6,8 @@
 
 ## Nota importante
 
-Este ícone é um **placeholder de qualidade**: o Carsai Mozambique vai fornecer
-a arte oficial mais tarde. Quando isso acontecer, basta substituir o ficheiro
+Este ícone é um **placeholder de qualidade**: a arte oficial será fornecida
+mais tarde. Quando isso acontecer, basta substituir o ficheiro
 `carsai-os-icon.svg` mantendo o mesmo nome — nenhuma outra parte do
 repositório precisa de ser alterada.
 

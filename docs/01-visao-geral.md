@@ -23,7 +23,7 @@ Em resumo:
 
 ## 1.2 Nomenclatura
 
-A designação **"Carsai"** é o guarda-chuva do projecto (**Carsai Mozambique**)
+A designação **"Carsai"** é a marca-guarda-chuva do projecto
 e **não possui relação com IA**. Os artefactos do sistema podem ser nomeados:
 
 | Nome | Uso |

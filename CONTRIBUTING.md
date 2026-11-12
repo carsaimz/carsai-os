@@ -5,7 +5,7 @@ para manter o projecto coeso.
 
 ## Código de conduta
 
-Seja respeitoso. Estamos a construir algo público, de Moçambique para o mundo.
+Seja respeitoso. Estamos a construir algo público e aberto ao mundo.
 Críticas técnicas são bem-vindas; ataques pessoais, não.
 
 ## Áreas do repositório

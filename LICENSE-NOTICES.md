@@ -10,4 +10,4 @@ The wallpapers in `branding/wallpapers/` were AI-generated for this project
 and are distributed under the same MIT license as the repository.
 
 The file `branding/logo/carsai-os-icon.svg` is a temporary placeholder to be
-replaced by official Carsai Mozambique artwork.
+replaced by official Carsai OS artwork.
