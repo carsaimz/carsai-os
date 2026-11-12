@@ -22,6 +22,8 @@ Não é objectivo competir com distros generalistas em quantidade de recursos: a
 
 > "Carsai" é o guarda-chuva do projecto (**Carsai Mozambique**) e não tem relação com IA. Os artefactos podem chamar-se *Carsai OS* (produto) ou *Carsai LinuOs* (variação); o prefixo é a identidade.
 
+> Site oficial: **https://carsaios.vercel.app** (repo: `carsai-os-site`, privado).
+
 ## Metas
 
 | Métrica | Alvo |
@@ -56,6 +58,16 @@ A justificação e os dados por detrás destes alvos estão na [documentação](
   atalhos e dicas dos comandos Carsai; aparece uma vez, nunca mais.
 - **Ferramentas hacker pré-instaladas** — btop, neofetch, tmux, ranger, ncdu,
   cmatrix, xdotool, wmctrl, mais Firefox ESR como navegador.
+
+## Novo na main (próximo release: v0.1.1-alpha)
+
+- **Instalador de disco** — Calamares com marca `carsai` e lançador
+  "Instalar o Carsai OS"; configuração completa e limites em [docs/09](docs/09-instalador-disco.md).
+- **`carsai-update`** — apt update + full-upgrade (com `--clean` para órfãos).
+- **`carsai-doctor`** — relatório do sistema num comando (RAM idle vs. meta,
+  zram, serviços, temas) para anexar a issues.
+- **Metas de memória revistas** — ≤ 800 MB em idle, mínimo 2 GB de RAM
+  (antes: 600 MB / 1 GB).
 
 ## Releases
 
@@ -125,9 +137,11 @@ qemu-system-x86_64 -m 2048 -enable-kvm -cdrom build/live/carsai-os-*.iso
       statusbar rico + dock, atalhos estilo Windows, banner de boas-vindas
 - [x] **Fase 3 — Wine**: Wine 32+64 bits pré-instalado, carsai-exe, limitações documentadas
 - [ ] **Fase 4 — Waydroid**: script de instalação pronto; avaliar em XFCE com Wayland real
-- [ ] **Fase 5 — Refinamento**: testes em hardware real com 2 GB / 4 GB, ajuste de serviços, docs do utilizador
+- [~] **Fase 5 — Refinamento**: instalador Calamares + carsai-update/carsai-doctor na main;
+      faltam os testes em VM (RAM idle, instalação BIOS/UEFI)
 
-Detalhes em [docs/07-roadmap.md](docs/07-roadmap.md).
+Detalhes em [ROADMAP.md](ROADMAP.md) (quadro de estado) e
+[docs/07-roadmap.md](docs/07-roadmap.md) (critérios de saída).
 
 ## Documentação
 

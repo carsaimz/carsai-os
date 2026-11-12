@@ -10,6 +10,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-00e5ff.svg)
 ![Platform: Debian](https://img.shields.io/badge/base-Debian%2012%20Bookworm-A81D33.svg)
 ![Desktop: XFCE](https://img.shields.io/badge/desktop-XFCE-2284f2.svg)
+![Website](https://img.shields.io/badge/site-carsaios.vercel.app-ff2bd6.svg)
 [![Português](https://img.shields.io/badge/idioma-Portugu%C3%AAs-00e5ff.svg)](README.pt.md)
 
 </div>
@@ -21,6 +22,8 @@
 It does not try to compete with general-purpose distros on feature count. The goal is a **cohesive, stylish and efficient** experience on modest hardware, with a planned path for **Windows (.exe)** and **Android (.apk)** application compatibility.
 
 > "Carsai" is the umbrella name of the project (**Carsai Mozambique**) and has no relation to AI. Artifacts may be named *Carsai OS* (product) or *Carsai LinuOs* (variant); the prefix is the identity.
+
+> Official website: **https://carsaios.vercel.app** (repo: `carsai-os-site`, private).
 
 ## Goals
 
@@ -56,6 +59,15 @@ For the rationale and benchmarks behind these targets, see the [documentation](d
   sheet and the Carsai command hints; shows once, never again.
 - **Hacker toolkit pre-installed** — btop, neofetch, tmux, ranger, ncdu,
   cmatrix, xdotool, wmctrl, plus Firefox ESR as the browser.
+
+## Landed on main (next release: v0.1.1-alpha)
+
+- **Disk installer** — Calamares with the `carsai` branding and an
+  "Install Carsai OS" launcher; full config + limits in [docs/09](docs/09-instalador-disco.md).
+- **`carsai-update`** — apt update + full-upgrade (plus `--clean`).
+- **`carsai-doctor`** — one-shot system report (idle RAM vs target, zram,
+  services, themes) to attach to bug reports.
+- **Memory targets revised** — ≤ 800 MB idle, 2 GB minimum RAM (was 600 MB / 1 GB).
 
 ## Releases
 
@@ -127,9 +139,11 @@ qemu-system-x86_64 -m 2048 -enable-kvm -cdrom build/live/carsai-os-*.iso
       rich statusbar + dock, Windows-style shortcuts, welcome banner
 - [x] **Phase 3 — Wine**: Wine 32+64-bit pre-installed, carsai-exe, documented limits
 - [ ] **Phase 4 — Waydroid**: installer script ready; evaluate on real Wayland-capable XFCE
-- [ ] **Phase 5 — Refinement**: stress tests on real 2 GB / 4 GB hardware, service tuning, user docs
+- [~] **Phase 5 — Refinement**: Calamares installer + carsai-update/carsai-doctor
+      landed; VM tests (idle RAM, BIOS/UEFI install) pending
 
-Details in [docs/07-roadmap.md](docs/07-roadmap.md).
+Details in [ROADMAP.md](ROADMAP.md) (status board) and
+[docs/07-roadmap.md](docs/07-roadmap.md) (exit criteria).
 
 ## Documentation
 
@@ -143,6 +157,7 @@ The technical documentation is written in Portuguese:
 6. [Decisões de arquitectura (o que não fazer)](docs/06-arquitetura-decisoes.md)
 7. [Roteiro de implementação](docs/07-roadmap.md)
 8. [Shell: atalhos, statusbar e a experiência Windows + Android](docs/08-shell-atalhos-e-statusbar.md)
+9. [Instalador de disco (Calamares)](docs/09-instalador-disco.md)
 
 ## Contributing
 

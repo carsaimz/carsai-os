@@ -18,6 +18,7 @@ código, os comentários e os commits seguem em inglês.
 | [06 — Decisões de arquitectura](06-arquitetura-decisoes.md) | O que deliberadamente **não** vamos fazer, e porquê |
 | [07 — Roteiro de implementação](07-roadmap.md) | Fases 1–5, critérios de saída, estado actual |
 | [08 — Shell: atalhos, statusbar e experiência Windows+Android](08-shell-atalhos-e-statusbar.md) | Painéis, dock, atalhos de teclado, xfwm4, banner, comandos Carsai |
+| [09 — Instalador de disco (Calamares)](09-instalador-disco.md) | Instalação no disco, configuração dos módulos, limites e matriz de testes |
 
 ## Resumo em uma página
 
