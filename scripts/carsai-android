@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# carsai-android - launch the Android environment (Waydroid) on Carsai OS.
+#
+# On X11 (XFCE default) Waydroid renders inside a nested Weston window,
+# which gives a phone-like floating Android screen. On a real Wayland
+# session Waydroid windows appear directly.
+#
+# Prerequisite: scripts/install-waydroid.sh (one-time, installed system).
+set -euo pipefail
+
+log() { printf '[carsai-android] %s\n' "$*"; }
+
+if ! command -v waydroid >/dev/null 2>&1; then
+        log "Waydroid nao esta instalado."
+        log "Execute: sudo scripts/install-waydroid.sh   (sistema instalado)"
+        exit 1
+fi
+
+RUN_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+
+# Already on Wayland -> show the UI directly.
+if [ -n "${WAYLAND_DISPLAY:-}" ]; then
+        log "Sessao Wayland detectada; abrindo Waydroid..."
+        exec waydroid show-full-ui
+fi
+
+# X11 -> nested Weston window (portrait, phone-style).
+SOCKET="$RUN_DIR/carsai-wl"
+if [ ! -S "$SOCKET" ]; then
+        if ! command -v weston >/dev/null 2>&1; then
+                log "weston nao encontrado. Instale com: sudo apt install weston"
+                exit 1
+        fi
+        rm -f "$SOCKET"
+        log "Iniciando Weston aninhado (janela estilo telefone)..."
+        weston --socket=carsai-wl --width=720 --height=1280 >/dev/null 2>&1 &
+        WESTON_PID=$!
+
+        i=0
+        while [ ! -S "$SOCKET" ] && [ "$i" -lt 50 ]; do
+                sleep 0.2
+                i=$((i + 1))
+        done
+        if [ ! -S "$SOCKET" ]; then
+                log "Weston nao respondeu a tempo."
+                kill "$WESTON_PID" 2>/dev/null || true
+                exit 1
+        fi
+else
+        WESTON_PID=""
+fi
+
+export WAYLAND_DISPLAY=carsai-wl
+
+log "Iniciando sessao Waydroid (primeira vez pode demorar)..."
+waydroid session start >/dev/null 2>&1 &
+sleep 3
+waydroid show-full-ui || log "falha ao abrir a UI; veja: waydroid session show"
+
+if [ -n "${WESTON_PID:-}" ]; then
+        wait "$WESTON_PID" 2>/dev/null || true
+fi
