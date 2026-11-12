@@ -1,8 +1,11 @@
 /* XPM */
 static char * title_3_active_xpm[] = {
-"8 22 2 1",
+"8 22 5 1",
 "  c #101418",
 "b c #4FC3F7",
+"c c #3986A9",
+"d c #79C0FF",
+"e c #3F6180",
 "        ",
 "        ",
 "        ",
@@ -13,6 +16,7 @@ static char * title_3_active_xpm[] = {
 "        ",
 "        ",
 "        ",
+"   de   ",
 "        ",
 "        ",
 "        ",
@@ -22,6 +26,5 @@ static char * title_3_active_xpm[] = {
 "        ",
 "        ",
 "        ",
-"        ",
-"        ",
+"cccccccc",
 "bbbbbbbb"};

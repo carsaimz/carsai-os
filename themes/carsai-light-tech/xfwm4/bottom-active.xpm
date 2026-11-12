@@ -1,6 +1,10 @@
 /* XPM */
 static char * bottom_active_xpm[] = {
-"8 2 1 1",
+"8 4 3 1",
 "  c #EAEFF4",
+"b c #0891B2",
+"c c #57B2C9",
 "        ",
-"        "};
+"        ",
+"cccccccc",
+"bbbbbb  "};
