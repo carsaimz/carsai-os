@@ -35,6 +35,42 @@ It does not try to compete with general-purpose distros on feature count. The go
 
 For the rationale and benchmarks behind these targets, see the [documentation](docs/README.md).
 
+## What is in the box (v0.1.0-alpha)
+
+- **Windows-like shell, hacker aesthetic** — start menu with the Carsai icon,
+  taskbar/dock, `Win+E` / `Win+R` / `Win+D` / `Win+L` / `Win+V`, window snap
+  with `Win+arrows`, workspaces via `Ctrl+Win+arrows` or `Win+1..4`,
+  `Ctrl+Alt+Del` task manager, PrintScreen variants (full chapter:
+  [docs/08](docs/08-shell-atalhos-e-statusbar.md)).
+- **Rich statusbar** — top panel with live CPU %, RAM % and network
+  down/up rates (zero-dependency genmon feed), system load bars, tray,
+  volume, seconds clock, workspace pager.
+- **.exe support out of the box** — Wine 64-bit **and 32-bit** (i386
+  multiarch built into the ISO), winetricks, fonts; `carsai-exe app.exe`
+  from the terminal or double-click in Thunar.
+- **Android path** — one-command installer (`scripts/install-waydroid.sh`)
+  plus the `carsai-android` launcher (nested phone-style window on X11).
+- **xfwm4 neon decorations** — generated title bars/buttons matching each
+  of the four themes (GTK + window decorations switch together).
+- **First-boot welcome** — ASCII-art banner with neofetch, shortcut cheat
+  sheet and the Carsai command hints; shows once, never again.
+- **Hacker toolkit pre-installed** — btop, neofetch, tmux, ranger, ncdu,
+  cmatrix, xdotool, wmctrl, plus Firefox ESR as the browser.
+
+## Releases
+
+Every git tag builds a release ISO automatically:
+
+```bash
+git tag v0.1.1-alpha && git push origin v0.1.1-alpha
+# the Release ISO workflow attaches carsai-os-<version>-amd64.iso + .sha256
+# to the GitHub Release for that tag
+```
+
+Grab the latest image from the
+[Releases page](https://github.com/carsaimz/carsai-os/releases). Non-tag
+code still produces a 7-day artifact from the *Build ISO* workflow.
+
 ## Theme gallery (pre-installed)
 
 The default theme is **Carsai Neon**. Three more complete themes ship with the system and can be switched with the built-in theme selector.
@@ -57,10 +93,10 @@ The default theme is **Carsai Neon**. Three more complete themes ship with the s
 ```
 carsai-os/
 ├── build/live/          # live-build configuration (ISO recipe)
-├── branding/            # logo + wallpapers
+├── branding/            # logo, wallpapers, ASCII art
 ├── docs/                # technical documentation (Portuguese)
-├── scripts/             # build-iso.sh, install-themes.sh
-└── themes/              # GTK themes, terminal schemes, theme selector
+├── scripts/             # build-iso.sh, install-themes.sh, Waydroid, system scripts
+└── themes/              # GTK + xfwm4 themes, terminal schemes, theme selector
 ```
 
 ## Build the ISO yourself
@@ -86,10 +122,11 @@ qemu-system-x86_64 -m 2048 -enable-kvm -cdrom build/live/carsai-os-*.iso
 ## Roadmap
 
 - [x] Project scaffold: documentation, live-build config, themes, branding, CI
-- [ ] **Phase 1 — Base**: bootable ISO, ≤ 600 MB idle (XFCE + Carsai Neon)
-- [ ] **Phase 2 — Identity**: packaged themes, icons, wallpapers, selector; VM tests at 2 GB / 4 GB
-- [ ] **Phase 3 — Wine**: Wine + Bottles/Lutris pre-installed, documented limits
-- [ ] **Phase 4 — Waydroid**: evaluate Wayland maturity on XFCE/Debian; optional "Carsai Android"
+- [x] **Phase 1 — Base**: bootable ISO built in CI (green build, artifact)
+- [x] **Phase 2 — Identity**: 4 themes (GTK + xfwm4), wallpapers, selector,
+      rich statusbar + dock, Windows-style shortcuts, welcome banner
+- [x] **Phase 3 — Wine**: Wine 32+64-bit pre-installed, carsai-exe, documented limits
+- [ ] **Phase 4 — Waydroid**: installer script ready; evaluate on real Wayland-capable XFCE
 - [ ] **Phase 5 — Refinement**: stress tests on real 2 GB / 4 GB hardware, service tuning, user docs
 
 Details in [docs/07-roadmap.md](docs/07-roadmap.md).
@@ -105,6 +142,7 @@ The technical documentation is written in Portuguese:
 5. [Compatibilidade com Android (.apk)](docs/05-compatibilidade-android.md)
 6. [Decisões de arquitectura (o que não fazer)](docs/06-arquitetura-decisoes.md)
 7. [Roteiro de implementação](docs/07-roadmap.md)
+8. [Shell: atalhos, statusbar e a experiência Windows + Android](docs/08-shell-atalhos-e-statusbar.md)
 
 ## Contributing
 

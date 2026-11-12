@@ -5,26 +5,53 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versio
 
 ## [Unreleased]
 
-### Added
-- Project scaffold: bilingual README (EN/PT), MIT license, contributing guide.
-- Technical documentation in Portuguese (`docs/01`–`docs/07`).
-- live-build configuration targeting Debian 12 (bookworm), amd64, XFCE:
-  custom package list (`carsai-os.list.chroot`), service-trim hook,
-  sysctl/zram tuning, LightDM greeter branding, first-run theme autostart.
-- Theme layer with four GTK3 themes: `Carsai-Neon` (default),
-  `Carsai-Dark-Minimal`, `Carsai-Retrowave`, `Carsai-Light-Tech`.
-- Terminal colour schemes for xfce4-terminal and Tilix (one per theme).
-- `carsai-theme-selector` CLI (applies GTK theme, wallpaper and terminal
-  palette; `--first-run` mode for the live/install default).
-- Branding: AI-generated wallpapers (one per theme) + placeholder SVG icon
-  (to be replaced by official artwork).
-- CI: GitHub Actions workflow that builds the ISO on every push touching
-  build/themes/branding (plus shellcheck lint).
+Nothing yet.
 
 ## [0.1.0-alpha] - 2026-11-12
 
-### Added
-- Initial public repository `carsaimz/carsai-os`.
+First public alpha: a bootable Debian 12 (bookworm) live ISO with the
+Carsai OS identity, a Windows-like + hacker shell, and .exe support.
 
-[Unreleased]: https://github.com/carsaimz/carsai-os/compare/v0.1.0-alpha...HEAD
+### Added
+- Project scaffold: bilingual README (EN/PT), MIT license, contributing guide.
+- Technical documentation in Portuguese (`docs/01`–`docs/08`).
+- live-build configuration targeting Debian 12 (bookworm), amd64, XFCE:
+  custom package list (`carsai-os.list.chroot`), service-trim hook,
+  wine32-multilib hook, sysctl/zram tuning, LightDM greeter branding,
+  first-run theme autostart, live timezone Africa/Maputo.
+- Theme layer with four themes (GTK3 **+ matching xfwm4 window
+  decorations**): `Carsai-Neon` (default), `Carsai-Dark-Minimal`,
+  `Carsai-Retrowave`, `Carsai-Light-Tech`.
+- Terminal colour schemes for xfce4-terminal and Tilix (one per theme).
+- `carsai-theme-selector` CLI (applies GTK theme, xfwm4 theme, wallpaper
+  and terminal palette; `--first-run` mode for the live/install default).
+- Rich statusbar (top panel): whiskermenu start button with the Carsai
+  icon, workspace pager, genmon system feed (`carsai-statusbar`: CPU %,
+  RAM %, network down/up), system load, tray, audio, seconds clock.
+- Bottom dock: pinned launchers (terminal, files, browser, editor),
+  grouped tasklist, show-desktop, intellihide.
+- Windows-style keyboard shortcuts: Win (start), Win+E/R/D/L/V, snap via
+  Win+arrows, workspaces via Ctrl+Win+arrows / Win+1..4, Ctrl+Alt+Del
+  task manager, PrintScreen variants.
+- Hacker welcome banner on first boot (ASCII art, neofetch, shortcut
+  cheat sheet); shown once per account.
+- System commands: `carsai-exe` (Windows programs via Wine), plus
+  internal `carsai-statusbar` / `carsai-welcome` / `carsai-banner`.
+- Windows .exe compatibility: Wine 64-bit + **wine32:i386** (i386
+  multiarch enabled at build time), winetricks, fonts-wine, cabextract.
+- Android path: `scripts/install-waydroid.sh` (official Waydroid repo +
+  weston) and the `carsai-android` launcher (nested phone-style window).
+- Hacker terminal toolkit: btop, neofetch, tmux, ranger, ncdu, cmatrix,
+  xdotool, wmctrl; Firefox ESR as the default browser.
+- Branding: AI-generated wallpapers (one per theme), placeholder SVG icon
+  (to be replaced by official artwork), ASCII art.
+- CI: ISO build on every push touching build/themes/branding (with build
+  concurrency), shell lint, and a release workflow that builds and
+  attaches the ISO + sha256 to the GitHub Release on every `v*` tag.
+
+### Changed
+- xfwm4 defaults: compositing on, inactive windows at 90% opacity,
+  4 workspaces, JetBrains Mono title font.
+
+## [Unreleased-compare]: https://github.com/carsaimz/carsai-os/compare/v0.1.0-alpha...HEAD
 [0.1.0-alpha]: https://github.com/carsaimz/carsai-os/releases/tag/v0.1.0-alpha

@@ -1,7 +1,27 @@
-# 05 — Compatibilidade com Android (.apk) — Fase futura
+# 05 — Compatibilidade com Android (.apk)
 
-> Estado: **planeado (Fase 4 do roteiro)**, condicionado à maturidade do
-> Wayland no XFCE/Debian na altura da implementação.
+> Estado: **caminho oficial definido e automatizado**. O Waydroid não vem
+> na ISO (exige kernel com módulos LXC/binder e consome RAM própria); em
+> vez disso, um script oficial instala-o num sistema **instalado**.
+
+## 5.0 Instalação oficial (sistema instalado)
+
+```bash
+sudo scripts/install-waydroid.sh   # repo oficial + waydroid + weston
+carsai-android                     # abre o Android em janela estilo telefone
+```
+
+O script `install-waydroid.sh` adiciona o repositório oficial do Waydroid
+(chave GPG em `/usr/share/keyrings/waydroid.gpg`), instala `waydroid` +
+`weston`, activa o serviço do container e corre `waydroid init` (imagem
+*vanilla*, sem Google Apps — para Play Store: `sudo waydroid init -s GAPPS`).
+
+O launcher `carsai-android` resolve o pré-requisito gráfico do XFCE (X11):
+inicia um **Weston aninhado** (janela 720×1280, tipo telefone) e abre a UI
+do Waydroid dentro dele. Em sessões Wayland reais, abre directamente.
+
+> A sessão live da ISO não persiste alterações; instale o Carsai OS antes
+> de usar o Waydroid.
 
 ## 5.1 Tecnologia no Linux: Waydroid
 
@@ -17,19 +37,11 @@ O **Waydroid** é um container **LXC** que roda um sistema Android completo
 
 ## 5.2 Pré-requisito crítico: Wayland
 
-O Waydroid depende do **Wayland** para integração gráfica suave. Isto significa
-que o Carsai OS precisará de oferecer uma sessão Wayland funcional:
-
-- **XFCE** ainda é maioritariamente X11, mas o suporte a Wayland está a
-  evoluir (XFCE 4.20+ trouxe progressos experimentais);
-- **LXQt** tem suporte parcial.
-
-Opções em avaliação (a decidir na Fase 4):
-
-1. **Sessão Wayland separada** dedicada ao uso de apps Android;
-2. **Integração via X11** com limitações conhecidas (sem janelas
-   individuais em alguns casos, input menos fluido);
-3. **Migração do desktop padrão para Wayland** se o estado do XFCE permitir.
+O Waydroid depende do **Wayland** para integração gráfica suave. O XFCE é
+maioritariamente X11, por isso o caminho oficial usa **Weston aninhado**
+(janela tipo telefone dentro do X11 — ver 5.0). Quando o suporte a Wayland
+do XFCE/Debian amadurecer (XFCE 4.20+), o Weston aninhado deixa de ser
+necessário e as janelas Android tornam-se nativas sem mudanças no script.
 
 ## 5.3 Integração no desktop
 

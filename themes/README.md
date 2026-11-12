@@ -12,12 +12,15 @@ themes/
 ├── carsai-retrowave/       # synthwave/outrun
 ├── carsai-light-tech/      # claro com acentos tech
 │   ├── gtk-3.0/gtk.css     # folha de estilos GTK3
+│   ├── xfwm4/              # decorações de janela (XPMs gerados)
 │   └── index.theme         # metadados
 ├── terminal/
 │   ├── xfce4/*.theme       # esquemas de cores do xfce4-terminal
 │   └── tilix/*.json        # esquemas de cores do Tilix
-└── selector/
-    └── carsai-theme-selector   # CLI: aplica GTK + wallpaper + terminal
+├── selector/
+│   └── carsai-theme-selector   # CLI: aplica GTK + xfwm4 + wallpaper + terminal
+└── src/
+    └── generate-xfwm4-themes.py # gerador das decorações xfwm4
 ```
 
 ## Nomes instalados
@@ -40,6 +43,10 @@ carsai-theme-selector --set neon # aplicação directa (neon|dark|retrowave|ligh
 carsai-theme-selector --list     # listar
 ```
 
+O seletor aplica os **dois lados** do tema: GTK (`/Net/ThemeName`) e as
+decorações de janela xfwm4 (`/general/theme`) — o tema instalado contém os
+dois sub-diretórios (`gtk-3.0/` e `xfwm4/`).
+
 Na ISO, `/usr/local/bin/carsai-theme-selector` corre com `--first-run` no
 primeiro login (autostart do skel) e aplica o **Carsai Neon** uma única vez.
 
@@ -57,12 +64,12 @@ primeiro login (autostart do skel) e aplica o **Carsai Neon** uma única vez.
 3. Acrescenta o mapeamento em `themes/selector/carsai-theme-selector` (array
    `THEMES`), em `scripts/build-iso.sh` (mapa `THEMES`) e em
    `scripts/install-themes.sh`.
-4. Cria o wallpaper correspondente em `branding/wallpapers/carsai-meu-tema.png`
+4. Acrescenta a paleta do tema em `themes/src/generate-xfwm4-themes.py` e
+   corre o gerador para criar as decorações de janela.
+5. Cria o wallpaper correspondente em `branding/wallpapers/carsai-meu-tema.png`
    e o esquema de terminal (pode derivar de um existente).
 
 ## Limitações conhecidas (Fase 2 no roteiro)
 
-- **xfwm4**: ainda usa o tema de janelas por omissão (barra de título não
-  tematizada). Um tema xfwm4 com assets próprios está planeado.
 - **GTK4/libadwaita**: não incluído nesta fase (XFCE é GTK3).
 - **Ícones**: Adwaita por omissão; tema de ícones Carsai previsto na Fase 2.
