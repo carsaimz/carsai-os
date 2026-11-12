@@ -1,0 +1,11 @@
+## Carsai OS - disk installer (Calamares) + backend bits
+## Runs from the live session via "Install Carsai OS" (pkexec calamares).
+calamares
+policykit-1
+policykit-1-gnome
+sudo
+rsync
+dosfstools
+os-prober
+grub-efi-amd64-bin
+grub-pc-bin

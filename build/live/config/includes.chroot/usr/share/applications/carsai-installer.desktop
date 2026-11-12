@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Carsai OS
+Name[pt]=Instalar o Carsai OS
+Name[pt_BR]=Instalar o Carsai OS
+GenericName=Disk installer
+GenericName[pt]=Instalador de disco
+Comment=Install Carsai OS to the hard disk
+Comment[pt]=Instalar o Carsai OS no disco rígido
+Exec=pkexec calamares
+Icon=carsai-os
+Terminal=false
+Categories=System;Installer;
+Keywords=carsai;install;installer;calamares;
+StartupNotify=true
