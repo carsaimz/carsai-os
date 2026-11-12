@@ -155,6 +155,7 @@ A documentação técnica está escrita em português:
 6. [Decisões de arquitectura (o que não fazer)](docs/06-arquitetura-decisoes.md)
 7. [Roteiro de implementação](docs/07-roadmap.md)
 8. [Shell: atalhos, statusbar e a experiência Windows + Android](docs/08-shell-atalhos-e-statusbar.md)
+9. [Instalador de disco (Calamares)](docs/09-instalador-disco.md)
 
 ## Contribuir
 
