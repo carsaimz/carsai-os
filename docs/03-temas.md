@@ -84,15 +84,35 @@ Um único script bash, sem dependências para além do XFCE + xfconf-query:
 | Primeiro arranque | `carsai-theme-selector --first-run` | Aplica o Carsai Neon uma única vez (marca em `~/.config/carsai/first-run-done`) — usado pelo autostart da ISO |
 | Listar | `carsai-theme-selector --list` | Mostra os temas disponíveis |
 
-O que o seletor aplica: tema GTK (xsettings), wallpaper em todos os monitores
-/ áreas de trabalho detectados via `xfconf-query -c xfce4-desktop -l`, e as
-cores do xfce4-terminal.
+O que o seletor aplica: tema GTK (xsettings), as decorações xfwm4
+correspondentes, o tema de ícones `Carsai` (quando instalado), o wallpaper em
+todos os monitores / áreas de trabalho detectados via
+`xfconf-query -c xfce4-desktop -l`, e as cores do xfce4-terminal.
 
-## 3.5 Extensões futuras (Fase 2)
+## 3.5 Tema de ícones (`Carsai`)
 
-- **Tema xfwm4** com barra de título desenhada (requer assets XPM — previsto,
-  não bloqueia a Fase 1).
-- **Tema de ícones Carsai** coeso (a partir de uma base herdada, com override
-  pontual dos ícones principais).
+O sistema traz um tema de ícones próprio, **enxuto**: em vez de desenhar
+uma coleção completa, o tema `Carsai` herda do **Adwaita**
+(`Inherits=Adwaita`) e sobrepõe apenas os ícones que definem a identidade:
+
+| Ícone | Contexto | Desenho |
+| --- | --- | --- |
+| `folder` | places | pasta escura com contorno ciano |
+| `user-home` | places | casa com porta magenta |
+| `user-desktop` | places | monitor com prompt de terminal |
+| `application-x-executable` | mimetypes | janela com triângulo "run" verde |
+| `application-x-msdos-program` | mimetypes | janela com grelha estilo Windows (o `.exe`) |
+
+- Fonte geradora: `themes/src/generate-carsai-icons.py` — a mesma abordagem
+  dos temas xfwm4: editar o script e regenerar, nunca editar os SVG à mão.
+- Instalação: `/usr/share/icons/carsai` (ISO e `install-themes.sh system`)
+  ou `~/.local/share/icons/carsai` (`install-themes.sh user`).
+- Activado por defeito no skel (`xsettings.xml` → `/Net/IconThemeName`) e
+  aplicado pelo seletor de temas em cada troca.
+- Todos os restantes ícones continuam a vir do Adwaita, sem duplicação —
+  o tema inteiro ocupa menos de 4 KB.
+
+## 3.6 Extensões futuras
+
 - **Tema GTK4/libadwaita** quando o XFCE migrar componentes para GTK4.
 - **Mais temas** na galeria (contribuições aceites — ver CONTRIBUTING.md).

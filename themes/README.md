@@ -1,7 +1,8 @@
 # Carsai OS — camada de temas
 
 A identidade visual do Carsai OS vive aqui. Quatro temas GTK3 completos,
-esquemas de cores de terminal e um seletor sem dependências externas.
+um tema de ícones próprio, esquemas de cores de terminal e um seletor sem
+dependências externas.
 
 ## Estrutura
 
@@ -17,10 +18,13 @@ themes/
 ├── terminal/
 │   ├── xfce4/*.theme       # esquemas de cores do xfce4-terminal
 │   └── tilix/*.json        # esquemas de cores do Tilix
+├── icons/
+│   └── carsai/             # tema de ícones (override enxuto sobre Adwaita)
 ├── selector/
-│   └── carsai-theme-selector   # CLI: aplica GTK + xfwm4 + wallpaper + terminal
+│   └── carsai-theme-selector   # CLI: aplica GTK + xfwm4 + ícones + wallpaper + terminal
 └── src/
-    └── generate-xfwm4-themes.py # gerador das decorações xfwm4
+    ├── generate-xfwm4-themes.py # gerador das decorações xfwm4
+    └── generate-carsai-icons.py # gerador do tema de ícones
 ```
 
 ## Nomes instalados
@@ -34,6 +38,7 @@ hífen — o nome que o xfconf espera em `/Net/ThemeName`:
 | `themes/carsai-dark-minimal` | `/usr/share/themes/Carsai-Dark-Minimal` |
 | `themes/carsai-retrowave` | `/usr/share/themes/Carsai-Retrowave` |
 | `themes/carsai-light-tech` | `/usr/share/themes/Carsai-Light-Tech` |
+| `themes/icons/carsai` | `/usr/share/icons/carsai` (tema de ícones) |
 
 ## Seletor
 
@@ -43,9 +48,10 @@ carsai-theme-selector --set neon # aplicação directa (neon|dark|retrowave|ligh
 carsai-theme-selector --list     # listar
 ```
 
-O seletor aplica os **dois lados** do tema: GTK (`/Net/ThemeName`) e as
-decorações de janela xfwm4 (`/general/theme`) — o tema instalado contém os
-dois sub-diretórios (`gtk-3.0/` e `xfwm4/`).
+O seletor aplica **todos os lados** do tema: GTK (`/Net/ThemeName`), as
+decorações de janela xfwm4 (`/general/theme`), o tema de ícones `Carsai`
+(`/Net/IconThemeName`, quando instalado) — o tema instalado contém os
+sub-diretórios `gtk-3.0/` e `xfwm4/`.
 
 Na ISO, `/usr/local/bin/carsai-theme-selector` corre com `--first-run` no
 primeiro login (autostart do skel) e aplica o **Carsai Neon** uma única vez.
