@@ -2,6 +2,7 @@ name: Build ISO
 
 # Builds the Carsai OS live ISO with live-build whenever the image recipe,
 # themes or branding change. Produces a downloadable artifact (7 days).
+# Versioned releases with the ISO attached: push a tag (see release.yml).
 
 on:
   workflow_dispatch:
@@ -16,6 +17,11 @@ on:
 
 permissions:
   contents: read
+
+# one ISO build at a time; newer pushes supersede older runs
+concurrency:
+  group: build-iso
+  cancel-in-progress: true
 
 jobs:
   shellcheck:
@@ -32,7 +38,12 @@ jobs:
           sudo apt-get install -y --no-install-recommends shellcheck
 
       - name: Run shellcheck
-        run: shellcheck -x scripts/*.sh themes/selector/carsai-theme-selector
+        run: >-
+          shellcheck -x
+          scripts/*.sh
+          scripts/carsai-android
+          scripts/system/*
+          themes/selector/carsai-theme-selector
 
   build-iso:
     name: Build Carsai OS ISO (bookworm, amd64)

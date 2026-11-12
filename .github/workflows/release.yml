@@ -1,0 +1,88 @@
+name: Release ISO
+
+# Versioned release pipeline. Push a tag and this workflow lints the
+# scripts, builds the ISO in a privileged Debian container, and attaches
+# the ISO + checksum to the GitHub Release for that tag.
+#
+#   git tag v0.1.0-alpha
+#   git push origin v0.1.0-alpha
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  shellcheck:
+    name: Shell lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends shellcheck
+
+      - name: Run shellcheck
+        run: >-
+          shellcheck -x
+          scripts/*.sh
+          scripts/carsai-android
+          scripts/system/*
+          themes/selector/carsai-theme-selector
+
+  release-iso:
+    name: Build and attach ISO
+    needs: shellcheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build the ISO (inside privileged debian:trixie container)
+        run: |
+          docker run --rm --privileged \
+            -v "$PWD":/repo -w /repo \
+            debian:trixie \
+            bash -c '
+              set -euo pipefail
+              apt-get update -qq
+              DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+                live-build debootstrap squashfs-tools xorriso
+              live-build --version 2>/dev/null || true
+              ./scripts/build-iso.sh
+            '
+
+      - name: Normalize artifact name + checksum
+        run: |
+          ISO="$(find build/live -maxdepth 1 -name '*.iso' | head -n1)"
+          test -n "$ISO" || { echo "no ISO produced"; exit 1; }
+          mv "$ISO" "carsai-os-${GITHUB_REF_NAME#v}-amd64.iso"
+          sha256sum "carsai-os-${GITHUB_REF_NAME#v}-amd64.iso" \
+            > "carsai-os-${GITHUB_REF_NAME#v}-amd64.iso.sha256"
+          ls -lh carsai-os-*
+
+      - name: Upload ISO artifact (kept 90 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: carsai-os-iso
+          path: |
+            carsai-os-*.iso
+            carsai-os-*.iso.sha256
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Attach ISO to the GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            carsai-os-*.iso
+            carsai-os-*.iso.sha256
+          generate_release_notes: true
+          fail_on_unmatched_files: true
