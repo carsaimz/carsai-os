@@ -15,6 +15,26 @@ gvfs
 xdg-user-dirs
 accountsservice
 
+### Desktop usability extras
+ristretto
+xarchiver
+network-manager
+adwaita-icon-theme
+xfce4-taskmanager
+xfce4-screenshooter
+xfce4-clipman-plugin
+pulseaudio
+pavucontrol
+
+### Screen locking (xflock4 backend, Win+L)
+xscreensaver
+
+### XFCE panel plugins (statusbar + start menu)
+xfce4-whiskermenu-plugin
+xfce4-genmon-plugin
+xfce4-systemload-plugin
+xfce4-pulseaudio-plugin
+
 ### Text editor + terminal tooling
 mousepad
 nano
@@ -29,6 +49,26 @@ git
 unzip
 zip
 xz-utils
+
+### Windows (.exe) compatibility layer - Wine 64-bit (32-bit via hook)
+wine
+wine64
+winetricks
+fonts-wine
+cabextract
+
+### Hacker terminal toolkit
+btop
+neofetch
+tmux
+ranger
+ncdu
+cmatrix
+xdotool
+wmctrl
+
+### Web browser
+firefox-esr
 
 ### Fonts: identity (JetBrains Mono) + coverage (Noto)
 fonts-noto-core
