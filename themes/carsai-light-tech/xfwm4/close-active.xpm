@@ -1,0 +1,16 @@
+/* XPM */
+static char * close_active_xpm[] = {
+"11 11 2 1",
+"  c #EAEFF4",
+"b c #D73A49",
+"           ",
+"           ",
+"  b     b  ",
+"   b   b   ",
+"    b b    ",
+"     b     ",
+"    b b    ",
+"   b   b   ",
+"  b     b  ",
+"           ",
+"           "};

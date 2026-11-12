@@ -1,0 +1,16 @@
+/* XPM */
+static char * shade_toggled_prelight_xpm[] = {
+"11 11 2 1",
+"  c #1B222A",
+"b c #4FC3F7",
+"           ",
+"           ",
+"           ",
+"  b     b  ",
+"   b   b   ",
+"    b b    ",
+"     b     ",
+"           ",
+"           ",
+"           ",
+"           "};

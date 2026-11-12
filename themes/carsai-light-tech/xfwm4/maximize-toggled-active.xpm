@@ -1,0 +1,16 @@
+/* XPM */
+static char * maximize_toggled_active_xpm[] = {
+"11 11 2 1",
+"  c #EAEFF4",
+"b c #0891B2",
+"           ",
+"           ",
+"  bbbbbbb  ",
+"  b     b  ",
+"  b bbbbb  ",
+"  b bbbbb  ",
+"  b bbbbb  ",
+"  b bbbbb  ",
+"  bbbbbbb  ",
+"           ",
+"           "};

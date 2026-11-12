@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Carsai OS - xfwm4 defaults: Carsai-Neon window decorations, compositing
+  with subtle inactive-window transparency, 4 workspaces, JetBrains Mono
+  title font. The theme selector switches "theme" when colours change.
+-->
+
+<channel name="xfwm4" version="1.0">
+  <property name="general" type="empty">
+    <property name="theme" type="string" value="Carsai-Neon"/>
+    <property name="button_layout" type="string" value="O|HMC"/>
+    <property name="title_font" type="string" value="JetBrains Mono Bold 10"/>
+    <property name="workspace_count" type="int" value="4"/>
+    <property name="use_compositing" type="bool" value="true"/>
+    <property name="opacity_active" type="uint" value="100"/>
+    <property name="opacity_inactive" type="uint" value="90"/>
+    <property name="frame_opacity" type="uint" value="85"/>
+    <property name="shadow_opacity" type="uint" value="45"/>
+    <property name="show_dock_shadow" type="bool" value="false"/>
+    <property name="show_frame_shadow" type="bool" value="true"/>
+    <property name="show_popup_shadow" type="bool" value="false"/>
+    <property name="activate_action" type="string" value="bring"/>
+    <property name="focus_new" type="bool" value="true"/>
+  </property>
+</channel>

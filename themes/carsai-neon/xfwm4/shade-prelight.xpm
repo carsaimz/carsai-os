@@ -1,0 +1,16 @@
+/* XPM */
+static char * shade_prelight_xpm[] = {
+"11 11 2 1",
+"  c #14141F",
+"b c #00E5FF",
+"           ",
+"           ",
+"           ",
+"     b     ",
+"    b b    ",
+"   b   b   ",
+"  b     b  ",
+"           ",
+"           ",
+"           ",
+"           "};

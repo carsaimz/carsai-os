@@ -1,0 +1,16 @@
+/* XPM */
+static char * stick_prelight_xpm[] = {
+"11 11 2 1",
+"  c #DCE3EA",
+"b c #0891B2",
+"           ",
+"           ",
+"           ",
+"           ",
+"    bbb    ",
+"    bbb    ",
+"    bbb    ",
+"           ",
+"           ",
+"           ",
+"           "};

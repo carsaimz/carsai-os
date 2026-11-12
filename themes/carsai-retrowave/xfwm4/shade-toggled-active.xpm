@@ -1,0 +1,16 @@
+/* XPM */
+static char * shade_toggled_active_xpm[] = {
+"11 11 2 1",
+"  c #170B26",
+"b c #FF71CE",
+"           ",
+"           ",
+"           ",
+"  b     b  ",
+"   b   b   ",
+"    b b    ",
+"     b     ",
+"           ",
+"           ",
+"           ",
+"           "};

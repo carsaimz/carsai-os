@@ -1,0 +1,16 @@
+/* XPM */
+static char * stick_pressed_xpm[] = {
+"11 11 2 1",
+"  c #0891B2",
+"b c #EAEFF4",
+"           ",
+"           ",
+"           ",
+"           ",
+"    bbb    ",
+"    bbb    ",
+"    bbb    ",
+"           ",
+"           ",
+"           ",
+"           "};

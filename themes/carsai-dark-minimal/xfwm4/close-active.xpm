@@ -1,0 +1,16 @@
+/* XPM */
+static char * close_active_xpm[] = {
+"11 11 2 1",
+"  c #101418",
+"b c #EF5350",
+"           ",
+"           ",
+"  b     b  ",
+"   b   b   ",
+"    b b    ",
+"     b     ",
+"    b b    ",
+"   b   b   ",
+"  b     b  ",
+"           ",
+"           "};

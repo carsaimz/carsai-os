@@ -91,6 +91,10 @@ apply_theme() {
         # 1) GTK theme (xsettings)
         xfconf-query -c xsettings -p /Net/ThemeName -n -t string -s "$gtk" >/dev/null
 
+        # 1b) Matching xfwm4 window decorations (installed under the same
+        #     theme name, see themes/src/generate-xfwm4-themes.py)
+        xfconf-query -c xfwm4 -p /general/theme -n -t string -s "$gtk" >/dev/null 2>&1 || true
+
         # 2) Wallpaper on every detected monitor/workspace property
         local wall_file prop
         wall_file="$(find_in_dirs "$wall" "${WALL_DIRS[@]}")" || wall_file=""

@@ -1,0 +1,16 @@
+/* XPM */
+static char * maximize_active_xpm[] = {
+"11 11 2 1",
+"  c #EAEFF4",
+"b c #0891B2",
+"           ",
+"           ",
+"  bbbbbbb  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  bbbbbbb  ",
+"           ",
+"           "};

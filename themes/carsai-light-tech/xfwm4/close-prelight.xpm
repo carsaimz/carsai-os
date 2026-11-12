@@ -1,0 +1,16 @@
+/* XPM */
+static char * close_prelight_xpm[] = {
+"11 11 2 1",
+"  c #DCE3EA",
+"b c #D73A49",
+"           ",
+"           ",
+"  b     b  ",
+"   b   b   ",
+"    b b    ",
+"     b     ",
+"    b b    ",
+"   b   b   ",
+"  b     b  ",
+"           ",
+"           "};

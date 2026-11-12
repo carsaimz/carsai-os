@@ -1,0 +1,16 @@
+/* XPM */
+static char * stick_toggled_inactive_xpm[] = {
+"11 11 2 1",
+"  c #20112F",
+"b c #B085C7",
+"           ",
+"           ",
+"           ",
+"   bbbbb   ",
+"   bbbbb   ",
+"   bb bb   ",
+"   bbbbb   ",
+"   bbbbb   ",
+"           ",
+"           ",
+"           "};

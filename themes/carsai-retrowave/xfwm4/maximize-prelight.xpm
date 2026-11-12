@@ -1,0 +1,16 @@
+/* XPM */
+static char * maximize_prelight_xpm[] = {
+"11 11 2 1",
+"  c #26163A",
+"b c #FF71CE",
+"           ",
+"           ",
+"  bbbbbbb  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  b     b  ",
+"  bbbbbbb  ",
+"           ",
+"           "};

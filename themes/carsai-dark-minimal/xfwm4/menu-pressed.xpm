@@ -1,0 +1,16 @@
+/* XPM */
+static char * menu_pressed_xpm[] = {
+"11 11 2 1",
+"  c #4FC3F7",
+"b c #101418",
+"           ",
+"           ",
+"           ",
+"  bbbbbbb  ",
+"           ",
+"  bbbbbbb  ",
+"           ",
+"  bbbbbbb  ",
+"           ",
+"           ",
+"           "};
