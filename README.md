@@ -21,8 +21,6 @@
 
 It does not try to compete with general-purpose distros on feature count. The goal is a **cohesive, stylish and efficient** experience on modest hardware, with a planned path for **Windows (.exe)** and **Android (.apk)** application compatibility.
 
-> "Carsai" is the umbrella brand of the project and has no relation to AI. Artifacts may be named *Carsai OS* (product) or *Carsai LinuOs* (variant); the prefix is the identity.
-
 > Official website: **https://carsaios.vercel.app**.
 
 ## Goals

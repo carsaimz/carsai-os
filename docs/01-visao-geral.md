@@ -23,17 +23,13 @@ Em resumo:
 
 ## 1.2 Nomenclatura
 
-A designação **"Carsai"** é a marca-guarda-chuva do projecto
-e **não possui relação com IA**. Os artefactos do sistema podem ser nomeados:
-
 | Nome | Uso |
 | --- | --- |
 | **Carsai OS** | Nome do produto principal (a distribuição) |
-| **Carsai LinuOs** | Variação permitida para artefactos específicos |
 | Prefixo `Carsai-*` | Componentes individuais (temas, scripts, pacotes) |
 
 O prefixo é a identidade; o sufixo pode variar consoante o contexto. Isto dá
-liberdade para criar, no futuro, sub-projectos sob o mesmo guarda-chuva
+liberdade para criar, no futuro, sub-projectos relacionados
 (ex.: *Carsai Studio*, *Carsai Mobile Tools*) sem fragmentar a marca.
 
 ## 1.3 Público-alvo

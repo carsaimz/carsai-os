@@ -77,6 +77,6 @@ O método de medição oficial do projecto (para todos os testes comparáveis):
   fiável e programática.
 - O diferencial do Carsai é a camada visual; LXQt poupa ~100–150 MB, mas
   dificulta a mesma fidelidade visual.
-- A alternativa LXQt (**Carsai LinuOs**) permanece no roteiro como variação
-  futura para hardware ainda mais antigo (≤ 1 GB), com estética simplificada;
-  está fora do escopo do produto actual (mínimo 2 GB).
+- A alternativa LXQt permanece no roteiro como variação futura para
+  hardware ainda mais antigo, com estética simplificada; está fora do
+  escopo do produto actual (mínimo 2 GB).
