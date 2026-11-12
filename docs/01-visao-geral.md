@@ -4,7 +4,7 @@
 
 O Carsai OS é uma distribuição Linux personalizada, derivada do **Debian
 Stable**, projectada para ser leve o suficiente para rodar confortavelmente em
-máquinas com **menos de 4 GB de RAM**, mas com uma identidade visual moderna e
+máquinas com **2–4 GB de RAM**, mas com uma identidade visual moderna e
 imersiva — temática **tech / cyberpunk / néon**.
 
 O objectivo não é competir com distros generalistas em quantidade de recursos,

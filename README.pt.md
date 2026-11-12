@@ -16,7 +16,7 @@
 
 ---
 
-O **Carsai OS** é uma distribuição Linux personalizada, derivada do **Debian Stable**, projectada para rodar confortavelmente em máquinas com **menos de 4 GB de RAM**, com uma identidade visual moderna e imersiva (**tech / cyberpunk / néon**).
+O **Carsai OS** é uma distribuição Linux personalizada, derivada do **Debian Stable**, projectada para rodar confortavelmente em máquinas com **2–4 GB de RAM**, com uma identidade visual moderna e imersiva (**tech / cyberpunk / néon**).
 
 Não é objectivo competir com distros generalistas em quantidade de recursos: a meta é uma experiência **coesa, estilosa e eficiente** em hardware modesto, com um caminho planeado para compatibilidade com aplicações **Windows (.exe)** e **Android (.apk)**.
 
@@ -26,9 +26,9 @@ Não é objectivo competir com distros generalistas em quantidade de recursos: a
 
 | Métrica | Alvo |
 | --- | --- |
-| Consumo de RAM em idle (sessão XFCE) | ≤ 600 MB |
-| RAM mínima para instalação / uso básico | 1 GB |
-| RAM confortável | 2–4 GB |
+| Consumo de RAM em idle (sessão XFCE) | ≤ 800 MB |
+| RAM mínima para instalação / uso básico | 2 GB |
+| RAM recomendada | 4 GB |
 | Arquitectura (inicial) | 64 bits (amd64) |
 | Base | Debian 12 "Bookworm" |
 | Ambiente gráfico | XFCE (principal), LXQt (alternativa futura) |

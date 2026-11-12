@@ -23,7 +23,7 @@ código, os comentários e os commits seguem em inglês.
 
 - **Base:** Debian 12 (bookworm) stable, amd64.
 - **Desktop:** XFCE (LXQt como alternativa leve futura).
-- **Meta de RAM:** ≤ 600 MB em idle; mínimo absoluto 1 GB para instalar e usar.
+- **Meta de RAM:** ≤ 800 MB em idle; mínimo absoluto 2 GB para instalar e usar (recomendado 4 GB).
 - **Identidade:** temas escuros tech/cyberpunk/néon — o tema padrão é o *Carsai Neon*, com uma galeria de 4 temas prontos e um seletor simples.
 - **Shell Windows + Android estilo hacker:** statusbar rico com métricas do sistema, dock inferior, atalhos estilo Windows (Win+E, snap, ...) e banner ASCII no primeiro boot (cap. 08).
 - **Compatibilidade:** Wine 32+64 bits pré-instalado (.exe) e script oficial de Waydroid (.apk) — sempre respeitando a meta de leveza.

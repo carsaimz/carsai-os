@@ -56,7 +56,7 @@ Para um sistema com 4 GB de RAM, rodar o Waydroid junto com o desktop Linux é
 
 | Cenário | RAM total estimada |
 | --- | --- |
-| Desktop Carsai (idle) | ≤ 600 MB |
+| Desktop Carsai (idle) | ≤ 800 MB |
 | Desktop + Waydroid idle | +700 MB – 1.2 GB |
 | Desktop + Waydroid + app Android pesada | 2.5–3.5 GB |
 

@@ -27,8 +27,8 @@ primeiro arranque.
 
 - [ ] ISO bootável produzida pelo CI e localmente (`build/live/*.iso`)
 - [ ] Sessão XFCE entra com Carsai Neon aplicado (primeiro arranque)
-- [ ] ≤ 600 MB de RAM em idle medidos pelo método oficial (capítulo 02)
-- [ ] Instalação básica funciona em VM com 1 GB de RAM
+- [ ] ≤ 800 MB de RAM em idle medidos pelo método oficial (capítulo 02)
+- [ ] Instalação básica funciona em VM com 2 GB de RAM
 
 ## Fase 2 — Identidade
 

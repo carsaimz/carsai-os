@@ -5,7 +5,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versio
 
 ## [Unreleased]
 
-Nothing yet.
+### Added
+- `ROADMAP.md` (repo root) — phase status board and release train.
+- Disk installer: Calamares pre-installed with `carsai` branding and an
+  "Install Carsai OS" desktop launcher (docs/09).
+- `carsai-update` (APT update/upgrade/clean) and `carsai-doctor` (system
+  report for bug reports).
+
+### Changed
+- Memory targets relaxed: idle ≤ **800 MB** (was 600 MB) and minimum RAM
+  raised to **2 GB** (was 1 GB); recommended 4 GB, comfortable 8 GB.
 
 ## [0.1.0-alpha] - 2026-11-12
 

@@ -1,5 +1,5 @@
 ## Carsai OS - core package list (Debian bookworm, amd64)
-## Goal: full XFCE desktop, lean services, <= 600 MB idle RAM.
+## Goal: full XFCE desktop, lean services, <= 800 MB idle RAM (2 GB minimum).
 ## Built with --apt-recommends false (see auto/config), which keeps
 ## "suggested" packages out of the image.
 
