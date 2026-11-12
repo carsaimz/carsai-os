@@ -47,23 +47,23 @@
 | Versão | Conteúdo planeado | Estado |
 | --- | --- | --- |
 | **v0.1.0-alpha** | Primeira ISO pública: shell Windows+hacker, Wine, statusbar, temas | ✅ publicada ([release](https://github.com/carsaimz/carsai-os/releases/tag/v0.1.0-alpha)) |
-| **v0.1.1-alpha** | Instalador Calamares, `carsai-update`, `carsai-doctor`, metas de RAM revistas | 🚧 na `main` |
-| **v0.1.2-alpha** | Validação Waydroid em VM, tema de ícones Carsai (override enxuto), galeria de screenshots | 📋 planeada |
+| **v0.1.1-alpha** | Instalador Calamares, `carsai-update`, `carsai-doctor`, metas de RAM revistas | ✅ publicada ([release](https://github.com/carsaimz/carsai-os/releases/tag/v0.1.1-alpha)) |
+| **v0.1.2-alpha** | Validação Waydroid em VM, tema de ícones Carsai (override enxuto), galeria de screenshots | 🚧 tema de ícones na `main` |
 | **v0.2.0-alpha** | Instalador testado (BIOS+UEFI), medição idle em VM 2 GB, ajustes de serviços | 📋 planeada |
 | **v0.1.0-beta** | Fase 5 fechada: hardware real ≥ 2 máquinas, docs de utilizador, release pública com checksums | 📋 planeada |
 | **1.0** | Primeira estável para o público geral (base Debian da época) | 🔭 visão |
 
 ## Próximos passos imediatos
 
-1. Testar a ISO em VM: boot ao vivo, `free -m` em idle (meta ≤ 800 MB),
-   instalador Calamares em disco virtual (BIOS e UEFI).
+1. Testar a ISO v0.1.1-alpha em VM: boot ao vivo, `free -m` em idle
+   (meta ≤ 800 MB), instalador Calamares em disco virtual (BIOS e UEFI).
 2. Validar Waydroid (`install-waydroid.sh` + `carsai-android`) numa VM com
    Wayland/X11 e registar resultados no capítulo 05.
 3. Substituir o logo provisório pela arte oficial (basta sobrescrever
    `branding/logo/carsai-os-icon.svg`).
-4. Publicar **v0.1.1-alpha**: `git tag v0.1.1-alpha && git push origin v0.1.1-alpha`
-   (o workflow *Release ISO* anexa a ISO + sha256 ao release automaticamente).
-5. Site oficial: <https://carsaios.vercel.app> (deploy na Vercel).
+4. Publicar **v0.1.2-alpha** quando a validação Waydroid e a galeria de
+   screenshots fecharem (o workflow *Release ISO* anexa a ISO + sha256).
+5. Site oficial no ar: <https://carsaios.vercel.app> (deploy na Vercel).
 
 ## Como decidimos o que entra
 
