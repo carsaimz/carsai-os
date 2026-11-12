@@ -80,5 +80,6 @@ carsai-theme-selector              # menu interativo (se instalado em ~/.local/b
 ## Reportar bugs
 
 Abre uma *issue* com: versão/teste usado (ISO ou commit), hardware ou VM
-(RAM atribuída), passos para reproduzir e, se possível, saída de
-`free -m`, `inxi -Fxz` ou logs relevantes.
+(RAM atribuída), passos para reproduzir e, se possível, a saída do
+**`carsai-doctor`** (relatório pronto: RAM idle, zram, serviços, temas) ou,
+em alternativa, `free -m` / `inxi -Fxz` / logs relevantes.

@@ -1,0 +1,55 @@
+#!/bin/sh
+# carsai-update - keep a Carsai OS system current (APT with neon output).
+#
+# Usage:
+#   carsai-update             apt update + full-upgrade
+#   carsai-update --clean     also autoremove + autoclean
+#
+# Runs as root; without root it re-executes itself with sudo (the installed
+# system and the live session both ship the user in the sudo group).
+set -eu
+
+ESC=$(printf '\033')
+BOLD="${ESC}[1m"
+CYAN="${ESC}[1;36m"
+MAGENTA="${ESC}[1;35m"
+OFF="${ESC}[0m"
+
+say() {
+        printf '%s[carsai]%s %s\n' "$CYAN" "$OFF" "$*"
+}
+
+if [ "$(id -u)" -ne 0 ]; then
+        if command -v sudo >/dev/null 2>&1; then
+                exec sudo "$0" "$@"
+        fi
+        echo "carsai-update: precisa de root (sudo indisponivel)." >&2
+        exit 1
+fi
+
+CLEAN=0
+for arg in "$@"; do
+        case "$arg" in
+        --clean) CLEAN=1 ;;
+        *)
+                echo "uso: carsai-update [--clean]" >&2
+                exit 1
+                ;;
+        esac
+done
+
+export DEBIAN_FRONTEND=noninteractive
+
+say "apt-get update..."
+apt-get update
+
+say "${BOLD}apt-get full-upgrade${OFF}"
+apt-get full-upgrade -y
+
+if [ "$CLEAN" -eq 1 ]; then
+        say "removing orphans + cleaning caches..."
+        apt-get autoremove -y
+        apt-get autoclean
+fi
+
+say "${MAGENTA}done${OFF} - reboot if the kernel was upgraded."

@@ -1,0 +1,81 @@
+#!/bin/sh
+# carsai-doctor - one-shot system report for bug reports and RAM audits.
+#
+# Usage:
+#   carsai-doctor          full report (stdout)
+#   carsai-doctor > report.txt
+#
+# Gathered values are the ones the project asks for in issues: idle RAM
+# (docs/02 method), zram, service trim state and disk layout. No network
+# calls, no packages installed.
+set -u
+
+ESC=$(printf '\033')
+CYAN="${ESC}[1;36m"
+MAGENTA="${ESC}[1;35m"
+OFF="${ESC}[0m"
+
+hdr() {
+        printf '\n%s== %s ==%s\n' "$CYAN" "$*" "$OFF"
+}
+
+line() {
+        printf '%-28s %s\n' "$1" "$2"
+}
+
+hdr "system"
+line "hostname" "$(hostname 2>/dev/null || echo '?')"
+line "kernel" "$(uname -r)"
+line "arch" "$(uname -m)"
+line "uptime" "$(uptime -p 2>/dev/null || echo '?')"
+line "session" "${XDG_CURRENT_DESKTOP:-?} / ${XDG_SESSION_TYPE:-?}"
+
+hdr "memory (docs/02 method: total - available)"
+if [ -r /proc/meminfo ]; then
+        awk '/^MemTotal:/ {t=$2} /^MemAvailable:/ {a=$2} END {
+                if (t && a) printf "%-28s %d MB\n", "total", t / 1024
+                if (t && a) printf "%-28s %d MB\n", "available", a / 1024
+                if (t && a) printf "%-28s %d MB\n", "used (total-avail)", (t - a) / 1024
+        }' /proc/meminfo
+        printf '%-28s %s\n' "target (idle)" "<= 800 MB"
+fi
+
+hdr "zram"
+if command -v zramctl >/dev/null 2>&1; then
+        zramctl 2>/dev/null || echo "no zram device"
+else
+        echo "zramctl not available"
+fi
+if command -v swapon >/dev/null 2>&1; then
+        swapon --show 2>/dev/null || true
+fi
+
+hdr "services (trimmed by design: cups/bluetooth/modemmanager/avahi)"
+for svc in cups bluetooth modemmanager avahi-daemon; do
+        if command -v systemctl >/dev/null 2>&1; then
+                state=$(systemctl is-active "$svc" 2>/dev/null || echo inactive)
+        else
+                state="n/a"
+        fi
+        line "$svc" "$state"
+done
+
+hdr "desktop layer"
+line "xfwm4 theme" "$(xfconf-query -c xfwm4 -p /general/theme 2>/dev/null || echo '?')"
+line "gtk theme" "$(xfconf-query -c xsettings -p /Net/ThemeName 2>/dev/null || echo '?')"
+if [ -d "$HOME/.config/xfce4" ]; then
+        line "xfce4 config" "present (\$HOME/.config/xfce4)"
+else
+        line "xfce4 config" "missing"
+fi
+
+hdr "disk"
+df -h / 2>/dev/null | sed 's/^/  /'
+
+hdr "packages"
+if command -v dpkg-query >/dev/null 2>&1; then
+        line "installed" "$(dpkg-query -f '${binary:Package}\n' -W 2>/dev/null | wc -l) packages"
+fi
+line "wine" "$(wine --version 2>/dev/null || echo 'not present')"
+
+printf '\n%sAttach this output to the issue:%s github.com/carsaimz/carsai-os/issues\n' "$MAGENTA" "$OFF"

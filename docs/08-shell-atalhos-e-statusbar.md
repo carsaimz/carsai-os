@@ -111,6 +111,8 @@ A partir do segundo boot, nenhum terminal abre automaticamente.
 | `carsai-theme-selector` | Menu interativo de temas (GTK + wallpaper + terminal + janelas) |
 | `carsai-theme-selector --set KEY` | Aplica directamente (`neon|dark|retrowave|light`) |
 | `carsai-exe programa.exe` | Executa programas Windows via Wine (prefixo criado à primeira) |
+| `carsai-update [--clean]` | Actualiza o sistema (apt update + full-upgrade; `--clean` remove órfãos) |
+| `carsai-doctor` | Relatório do sistema (RAM idle, zram, serviços, temas) para issues |
 | `carsai-statusbar` | (interno) alimenta o widget genmon do painel |
 | `carsai-welcome` | (interno) abre o banner uma única vez |
 | `carsai-android` | Abre o ambiente Android (após `scripts/install-waydroid.sh`) |
