@@ -4,13 +4,20 @@ Roteiro de alto nível, com critérios de saída por fase. Uma fase só é
 considerada fechada quando **todos** os critérios são verificados e
 documentados (com números, não sensações).
 
-## Estado actual do repositório (scaffold, 2026-11-12)
+> **Estado actual e trem de versões:** veja o quadro vivo em
+> [`ROADMAP.md`](../ROADMAP.md) (raiz do repo). Este capítulo mantém os
+> critérios de saída detalhados.
 
-- [x] Documentação técnica completa (`docs/`)
+## Estado actual do repositório (2026-11-12)
+
+- [x] Documentação técnica completa (`docs/01`–`docs/09`)
 - [x] Configuração live-build pronta para construir a ISO (`build/live/`)
-- [x] Quatro temas GTK3 + esquemas de terminal + seletor (`themes/`)
+- [x] Quatro temas GTK3 **+ xfwm4** + esquemas de terminal + seletor (`themes/`)
 - [x] Wallpapers gerados por IA + logo provisório (`branding/`)
 - [x] CI que compila a ISO a cada push relevante (`.github/workflows/`)
+- [x] Release v0.1.0-alpha publicada com ISO + sha256
+- [x] Shell Windows + Android estilo hacker (statusbar, dock, atalhos, Wine,
+      Waydroid, banner) — capítulo 08
 
 ## Fase 1 — Base
 
@@ -25,10 +32,13 @@ primeiro arranque.
 
 **Critérios de saída**:
 
-- [ ] ISO bootável produzida pelo CI e localmente (`build/live/*.iso`)
+- [x] ISO bootável produzida pelo CI e localmente (`build/live/*.iso`)
 - [ ] Sessão XFCE entra com Carsai Neon aplicado (primeiro arranque)
 - [ ] ≤ 800 MB de RAM em idle medidos pelo método oficial (capítulo 02)
 - [ ] Instalação básica funciona em VM com 2 GB de RAM
+
+> Boot pela CI confirmado; as medições em VM ficam para a Fase 5
+> (ferramenta: `carsai-doctor` gera o relatório para anexar ao issue).
 
 ## Fase 2 — Identidade
 
@@ -37,7 +47,7 @@ testar em VM com 2 GB e 4 GB de RAM.
 
 **Tarefas**:
 
-- [ ] Tema xfwm4 com barra de título desenhada (assets próprios)
+- [x] Tema xfwm4 com barra de título desenhada (assets próprios)
 - [ ] Tema de ícones Carsai (base enxuta, override pontual)
 - [ ] Teste de fidelidade visual dos 4 temas em apps GTK3 do XFCE
 - [ ] Applet/lançador do seletor no painel (opcional, UX)
@@ -53,7 +63,8 @@ e documentar limitações.
 
 **Tarefas**:
 
-- [ ] Decidir: dentro da ISO vs. instalador pós-instalação (peso vs. conveniência)
+- [x] Decidir: dentro da ISO vs. instalador pós-instalação (**dentro da ISO**,
+      com wine32:i386 activado no build — ISO ~1.3 GB)
 - [ ] Prefixo padrão + winetricks core (corefonts, vcrun)
 - [ ] Documento de compatibilidade (apps testados, o que falha e porquê)
 - [ ] Benchmarks de RAM com app de produtividade típica
@@ -69,6 +80,8 @@ instalação).
 
 **Tarefas**:
 
+- [x] `scripts/install-waydroid.sh` + `carsai-android` (launcher em janela
+      aninhada sobre X11 — implementado antes da avaliação formal)
 - [ ] Relatório de estado do Wayland no XFCE (4.20+/Debian da altura)
 - [ ] Protótipo: Waydroid numa sessão Wayland separada vs. integração X11
 - [ ] Decisão documentada (cenário A do capítulo 05)
@@ -83,6 +96,8 @@ serviços (desabilitar o que não for essencial), documentação do utilizador.
 
 **Tarefas**:
 
+- [x] Instalador de disco (Calamares, marca `carsai`, docs/09)
+- [x] `carsai-update` + `carsai-doctor` (manutenção e relatórios)
 - [ ] Matriz de testes em hardware real (≥ 3 máquinas, com/sem SSD)
 - [ ] Auditoria final de serviços activos em idle
 - [ ] Manual do utilizador (instalar, actualizar, temas, compatibilidade)
