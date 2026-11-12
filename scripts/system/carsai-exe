@@ -1,0 +1,39 @@
+#!/bin/sh
+# carsai-exe - run Windows programs (.exe) through Wine.
+#
+# Usage:
+#   carsai-exe program.exe [args...]
+#
+# Creates the ~/.wine prefix on first use and silences Wine debug noise.
+# Double-clicking an .exe in Thunar already goes through Wine's own
+# association; this wrapper is for the terminal-centric (hacker) workflow.
+set -eu
+
+if [ "$#" -eq 0 ]; then
+        echo "uso: carsai-exe <programa.exe> [argumentos]" >&2
+        echo "  exemplo: carsai-exe ~/Downloads/setup.exe /S" >&2
+        exit 1
+fi
+
+TARGET=$1
+shift
+
+case "$TARGET" in
+        /*) ;;
+        *) TARGET="$(pwd)/$TARGET" ;;
+esac
+
+if [ ! -f "$TARGET" ]; then
+        echo "carsai-exe: arquivo nao encontrado: $TARGET" >&2
+        exit 1
+fi
+
+export WINEDEBUG=-all
+
+if [ ! -d "$HOME/.wine" ]; then
+        echo "carsai-exe: criando prefixo Wine inicial (~/.wine), aguarde..."
+        wineboot -i >/dev/null 2>&1 || true
+        echo "carsai-exe: prefixo pronto."
+fi
+
+exec wine "$TARGET" "$@"

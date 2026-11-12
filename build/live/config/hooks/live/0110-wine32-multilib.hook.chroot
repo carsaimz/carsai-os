@@ -1,0 +1,15 @@
+#!/bin/sh
+# Carsai OS - Windows .exe support: enable i386 multiarch and install
+# wine32, so 32-bit Windows programs (the majority) run out of the box.
+# The 64-bit side comes from the package list (wine, wine64, winetricks).
+set -e
+
+echo "carsai: enabling i386 multiarch (32-bit .exe support)"
+dpkg --add-architecture i386
+apt-get update
+
+echo "carsai: installing wine32:i386"
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        wine32:i386
+
+echo "carsai: wine32 installed (32+64-bit .exe support complete)."
