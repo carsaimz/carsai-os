@@ -53,6 +53,10 @@ mkdir -p "$INC/usr/share/icons/hicolor/scalable/apps"
 cp "$BRANDING_SRC/logo/carsai-os-icon.svg" \
         "$INC/usr/share/icons/hicolor/scalable/apps/carsai-os.svg"
 
+log "Syncing the Carsai icon theme (Adwaita override)..."
+rm -rf "$INC/usr/share/icons/carsai"
+cp -r "$THEMES_SRC/icons/carsai" "$INC/usr/share/icons/carsai"
+
 log "Installing theme selector to /usr/local/bin..."
 mkdir -p "$INC/usr/local/bin"
 install -m 0755 "$THEMES_SRC/selector/carsai-theme-selector" \

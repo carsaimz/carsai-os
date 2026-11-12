@@ -1,0 +1,20 @@
+[Icon Theme]
+Name=Carsai
+Comment=Carsai OS neon icon overrides on the Adwaita base
+Comment[pt]=Acentos néon do Carsai OS sobre a base Adwaita
+Inherits=Adwaita
+Directories=scalable/places,scalable/mimetypes
+
+[scalable/places]
+Size=48
+Context=Places
+Type=Scalable
+MinSize=8
+MaxSize=512
+
+[scalable/mimetypes]
+Size=48
+Context=MimeTypes
+Type=Scalable
+MinSize=8
+MaxSize=512

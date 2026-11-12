@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# carsai-theme-selector - apply Carsai OS themes (GTK + wallpaper + terminal).
+# carsai-theme-selector - apply Carsai OS themes (GTK + xfwm4 + icons +
+# wallpaper + terminal).
 #
 # Usage:
 #   carsai-theme-selector              interactive menu
@@ -10,7 +11,7 @@
 # No dependencies beyond XFCE (xfconf-query/xfdesktop) + bash.
 set -euo pipefail
 
-VERSION="0.1.0"
+VERSION="0.1.2"
 DEFAULT_KEY="neon"
 MARKER="$HOME/.config/carsai/first-run-done"
 
@@ -18,6 +19,7 @@ MARKER="$HOME/.config/carsai/first-run-done"
 THEME_DIRS=("/usr/share/themes" "$HOME/.themes" "${XDG_DATA_HOME:-$HOME/.local/share}/themes")
 WALL_DIRS=("/usr/share/backgrounds/carsai" "${XDG_DATA_HOME:-$HOME/.local/share}/backgrounds/carsai")
 SCHEME_DIRS=("/usr/share/carsai/terminal" "${XDG_DATA_HOME:-$HOME/.local/share}/carsai/terminal")
+ICON_DIRS=("/usr/share/icons/carsai" "$HOME/.local/share/icons/carsai" "${XDG_DATA_HOME:-$HOME/.local/share}/icons/carsai")
 
 # key|GTK theme name|wallpaper file|terminal scheme|description
 THEMES=(
@@ -94,6 +96,12 @@ apply_theme() {
         # 1b) Matching xfwm4 window decorations (installed under the same
         #     theme name, see themes/src/generate-xfwm4-themes.py)
         xfconf-query -c xfwm4 -p /general/theme -n -t string -s "$gtk" >/dev/null 2>&1 || true
+
+        # 1c) Carsai icon overrides (Adwaita base), when the icon theme is
+        #     installed (see themes/src/generate-carsai-icons.py)
+        if find_in_dirs "index.theme" "${ICON_DIRS[@]}" >/dev/null 2>&1; then
+                xfconf-query -c xsettings -p /Net/IconThemeName -n -t string -s "Carsai" >/dev/null 2>&1 || true
+        fi
 
         # 2) Wallpaper on every detected monitor/workspace property
         local wall_file prop
