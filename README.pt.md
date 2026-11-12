@@ -59,7 +59,7 @@ A justificação e os dados por detrás destes alvos estão na [documentação](
 - **Ferramentas hacker pré-instaladas** — btop, neofetch, tmux, ranger, ncdu,
   cmatrix, xdotool, wmctrl, mais Firefox ESR como navegador.
 
-## Novo na main (próximo release: v0.1.1-alpha)
+## Novidades do v0.1.1-alpha
 
 - **Instalador de disco** — Calamares com marca `carsai` e lançador
   "Instalar o Carsai OS"; configuração completa e limites em [docs/09](docs/09-instalador-disco.md).
@@ -74,7 +74,7 @@ A justificação e os dados por detrás destes alvos estão na [documentação](
 Cada tag git compila uma ISO de release automaticamente:
 
 ```bash
-git tag v0.1.1-alpha && git push origin v0.1.1-alpha
+git tag v0.1.2-alpha && git push origin v0.1.2-alpha
 # o workflow "Release ISO" anexa carsai-os-<versão>-amd64.iso + .sha256
 # ao GitHub Release dessa tag
 ```

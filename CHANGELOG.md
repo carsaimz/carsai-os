@@ -5,6 +5,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versio
 
 ## [Unreleased]
 
+## [0.1.1-alpha] - 2026-11-12
+
 ### Added
 - `ROADMAP.md` (repo root) — phase status board and release train.
 - Disk installer: Calamares pre-installed with `carsai` branding and an
@@ -15,6 +17,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versio
 ### Changed
 - Memory targets relaxed: idle ≤ **800 MB** (was 600 MB) and minimum RAM
   raised to **2 GB** (was 1 GB); recommended 4 GB, comfortable 8 GB.
+- READMEs and docs: neutral project branding (org mentions removed,
+  credits kept); website link simplified.
+- ISO publisher metadata set to "Carsai OS".
 
 ## [0.1.0-alpha] - 2026-11-12
 
@@ -62,5 +67,6 @@ Carsai OS identity, a Windows-like + hacker shell, and .exe support.
 - xfwm4 defaults: compositing on, inactive windows at 90% opacity,
   4 workspaces, JetBrains Mono title font.
 
-## [Unreleased-compare]: https://github.com/carsaimz/carsai-os/compare/v0.1.0-alpha...HEAD
+## [Unreleased-compare]: https://github.com/carsaimz/carsai-os/compare/v0.1.1-alpha...HEAD
+[0.1.1-alpha]: https://github.com/carsaimz/carsai-os/releases/tag/v0.1.1-alpha
 [0.1.0-alpha]: https://github.com/carsaimz/carsai-os/releases/tag/v0.1.0-alpha
