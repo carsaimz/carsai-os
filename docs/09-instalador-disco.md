@@ -1,5 +1,7 @@
 # 09 — Instalador de disco (Calamares)
 
+> [English](09-instalador-disco.en.md) | **Português**
+
 > A ISO é *live*, mas o Carsai OS é um sistema para instalar. Este capítulo
 > documenta o instalador de disco: o que está configurado, como é executado
 > e os limites deliberados da v0.1.x.

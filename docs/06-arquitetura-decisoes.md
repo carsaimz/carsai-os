@@ -1,5 +1,7 @@
 # 06 — Decisões de arquitectura (o que NÃO fazer)
 
+> [English](06-arquitetura-decisoes.en.md) | **Português**
+
 Tão importante quanto o que construimos é o que **recusamos construir**. Este
 capítulo lista as decisões anti-overengineering do projecto, cada uma com a
 justificação técnica. Se um PR proponha reverter uma destas decisões, precisa

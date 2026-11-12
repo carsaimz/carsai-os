@@ -1,5 +1,7 @@
 # 02 — Requisitos de sistema e escolha da base
 
+> [English](02-requisitos-sistema.en.md) | **Português**
+
 Para atingir a meta de RAM abaixo de 4 GB com folga, a base técnica precisa de
 ser cirúrgica. Este capítulo fixa as escolhas e os números de referência.
 

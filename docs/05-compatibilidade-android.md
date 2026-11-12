@@ -1,5 +1,7 @@
 # 05 — Compatibilidade com Android (.apk)
 
+> [English](05-compatibilidade-android.en.md) | **Português**
+
 > Estado: **caminho oficial definido e automatizado**. O Waydroid não vem
 > na ISO (exige kernel com módulos LXC/binder e consome RAM própria); em
 > vez disso, um script oficial instala-o num sistema **instalado**.

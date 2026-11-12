@@ -1,5 +1,7 @@
 # Logo do Carsai OS
 
+> [English](README.en.md) | **Português**
+
 | Ficheiro | Descrição |
 | --- | --- |
 | `carsai-os-icon.svg` | Ícone oficial actual do projecto (versão inicial, gerada durante o scaffold). |

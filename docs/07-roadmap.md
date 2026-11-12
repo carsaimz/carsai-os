@@ -1,5 +1,7 @@
 # 07 — Roteiro de implementação
 
+> [English](07-roadmap.en.md) | **Português**
+
 Roteiro de alto nível, com critérios de saída por fase. Uma fase só é
 considerada fechada quando **todos** os critérios são verificados e
 documentados (com números, não sensações).

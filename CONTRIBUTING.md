@@ -1,5 +1,7 @@
 # Contribuir para o Carsai OS
 
+> [English](CONTRIBUTING.en.md) | **Português**
+
 Obrigado pelo interesse em contribuir! Este documento define as regras básicas
 para manter o projecto coeso.
 

@@ -140,22 +140,24 @@ qemu-system-x86_64 -m 2048 -enable-kvm -cdrom build/live/carsai-os-*.iso
 - [~] **Phase 5 — Refinement**: Calamares installer + carsai-update/carsai-doctor
       landed; VM tests (idle RAM, BIOS/UEFI install) pending
 
-Details in [ROADMAP.md](ROADMAP.md) (status board) and
-[docs/07-roadmap.md](docs/07-roadmap.md) (exit criteria).
+Details in [ROADMAP.en.md](ROADMAP.en.md) (status board) and
+[docs/07-roadmap.en.md](docs/07-roadmap.en.md) (exit criteria).
 
 ## Documentation
 
-The technical documentation is written in Portuguese:
+The technical documentation is bilingual — the list below links the
+**English** versions; the Portuguese originals sit next to them as
+`docs/*.md`, and every file carries a language banner at the top:
 
-1. [Visão geral e filosofia](docs/01-visao-geral.md)
-2. [Requisitos de sistema e escolha da base](docs/02-requisitos-sistema.md)
-3. [Sistema de temas (identidade visual)](docs/03-temas.md)
-4. [Compatibilidade com Windows (.exe)](docs/04-compatibilidade-windows.md)
-5. [Compatibilidade com Android (.apk)](docs/05-compatibilidade-android.md)
-6. [Decisões de arquitectura (o que não fazer)](docs/06-arquitetura-decisoes.md)
-7. [Roteiro de implementação](docs/07-roadmap.md)
-8. [Shell: atalhos, statusbar e a experiência Windows + Android](docs/08-shell-atalhos-e-statusbar.md)
-9. [Instalador de disco (Calamares)](docs/09-instalador-disco.md)
+1. [Visão geral e filosofia](docs/01-visao-geral.en.md)
+2. [Requisitos de sistema e escolha da base](docs/02-requisitos-sistema.en.md)
+3. [Sistema de temas (identidade visual)](docs/03-temas.en.md)
+4. [Compatibilidade com Windows (.exe)](docs/04-compatibilidade-windows.en.md)
+5. [Compatibilidade com Android (.apk)](docs/05-compatibilidade-android.en.md)
+6. [Decisões de arquitectura (o que não fazer)](docs/06-arquitetura-decisoes.en.md)
+7. [Roteiro de implementação](docs/07-roadmap.en.md)
+8. [Shell: atalhos, statusbar e a experiência Windows + Android](docs/08-shell-atalhos-e-statusbar.en.md)
+9. [Instalador de disco (Calamares)](docs/09-instalador-disco.en.md)
 
 ## Contributing
 

@@ -1,5 +1,7 @@
 # Build directory — Carsai OS ISO (live-build)
 
+> [English](README.en.md) | **Português**
+
 Esta pasta contém a **receita** da ISO do Carsai OS (não os artefactos
 gerados — saídas de build nunca são versionadas).
 

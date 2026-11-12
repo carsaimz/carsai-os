@@ -1,5 +1,7 @@
 # ROADMAP — Carsai OS
 
+> [English](ROADMAP.en.md) | **Português**
+
 > Quadro de fases e do trem de versões. Os critérios de saída detalhados de
 > cada fase vivem em [`docs/07-roadmap.md`](docs/07-roadmap.md); este ficheiro
 > é o **estado actual**, actualizado a cada entrega.
@@ -48,7 +50,7 @@
 | --- | --- | --- |
 | **v0.1.0-alpha** | Primeira ISO pública: shell Windows+hacker, Wine, statusbar, temas | ✅ publicada ([release](https://github.com/carsaimz/carsai-os/releases/tag/v0.1.0-alpha)) |
 | **v0.1.1-alpha** | Instalador Calamares, `carsai-update`, `carsai-doctor`, metas de RAM revistas | ✅ publicada ([release](https://github.com/carsaimz/carsai-os/releases/tag/v0.1.1-alpha)) |
-| **v0.1.2-alpha** | Validação Waydroid em VM, tema de ícones Carsai (override enxuto), galeria de screenshots | 🚧 tema de ícones na `main` |
+| **v0.1.2-alpha** | Validação Waydroid em VM, tema de ícones Carsai, traços tech no xfwm4, documentação bilíngue, galeria de screenshots | 🚧 ícones + xfwm4 + docs bilíngues na `main` |
 | **v0.2.0-alpha** | Instalador testado (BIOS+UEFI), medição idle em VM 2 GB, ajustes de serviços | 📋 planeada |
 | **v0.1.0-beta** | Fase 5 fechada: hardware real ≥ 2 máquinas, docs de utilizador, release pública com checksums | 📋 planeada |
 | **1.0** | Primeira estável para o público geral (base Debian da época) | 🔭 visão |

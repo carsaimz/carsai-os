@@ -1,10 +1,15 @@
 # Documentação técnica — Carsai OS
 
+> [English](README.en.md) | **Português**
+
 > Carsai OS · Distribuição Linux leve baseada em Debian
 
 Esta documentação descreve a arquitectura, as decisões técnicas e o roteiro do
 Carsai OS. Está escrita em português; o código, os comentários e os commits
 seguem em inglês.
+
+Cada ficheiro tem uma faixa de idioma no topo: as versões inglesas de todos
+os capítulos vivem ao lado como `*.en.md`.
 
 ## Índice
 

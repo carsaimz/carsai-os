@@ -1,5 +1,7 @@
 # Third-party notices
 
+> **English** | [Português](LICENSE-NOTICES.pt.md)
+
 Carsai OS is built on top of free and open-source software maintained by
 others, including (but not limited to) Debian, the Linux kernel, X.Org,
 XFCE, LightDM, live-build, the Noto and JetBrains Mono fonts and the

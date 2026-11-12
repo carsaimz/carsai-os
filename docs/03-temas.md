@@ -1,5 +1,7 @@
 # 03 — Sistema de temas (identidade visual)
 
+> [English](03-temas.en.md) | **Português**
+
 O grande diferencial do Carsai OS é a camada visual. A estratégia separa o
 **tema padrão** (tech/cyberpunk/néon) de uma **galeria de temas prontos** que o
 utilizador pode escolher com um seletor simples.

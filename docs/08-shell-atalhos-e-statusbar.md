@@ -1,5 +1,7 @@
 # 08 — Shell: atalhos, statusbar rico e a experiência Windows + Android
 
+> [English](08-shell-atalhos-e-statusbar.en.md) | **Português**
+
 > Estado: **implementado na ISO (alpha)**. Este capítulo descreve o shell
 > Carsai: como o XFCE foi configurado para parecer familiar para quem vem
 > do Windows, fluido para quem vem do Android — mantendo a estética hacker

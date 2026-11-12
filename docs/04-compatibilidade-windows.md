@@ -1,5 +1,7 @@
 # 04 — Compatibilidade com Windows (.exe)
 
+> [English](04-compatibilidade-windows.en.md) | **Português**
+
 > Estado: **na ISO desde a alpha**. O Wine (32 + 64 bits) e o winetricks
 > vêm pré-instalados; este capítulo fixa a abordagem e as expectativas.
 

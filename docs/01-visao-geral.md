@@ -1,5 +1,7 @@
 # 01 — Visão geral e filosofia
 
+> [English](01-visao-geral.en.md) | **Português**
+
 ## 1.1 O que é o Carsai OS
 
 O Carsai OS é uma distribuição Linux personalizada, derivada do **Debian

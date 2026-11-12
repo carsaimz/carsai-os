@@ -1,5 +1,7 @@
 # Carsai OS — camada de temas
 
+> [English](README.en.md) | **Português**
+
 A identidade visual do Carsai OS vive aqui. Quatro temas GTK3 completos,
 um tema de ícones próprio, esquemas de cores de terminal e um seletor sem
 dependências externas.

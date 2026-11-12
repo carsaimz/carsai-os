@@ -143,7 +143,9 @@ Detalhes em [ROADMAP.md](ROADMAP.md) (quadro de estado) e
 
 ## Documentação
 
-A documentação técnica está escrita em português:
+A documentação técnica é bilíngue — a lista abaixo liga os originais em
+português; as traduções inglesas vivem ao lado como `docs/*.en.md` (cada
+ficheiro tem uma faixa de idioma no topo):
 
 1. [Visão geral e filosofia](docs/01-visao-geral.md)
 2. [Requisitos de sistema e escolha da base](docs/02-requisitos-sistema.md)
