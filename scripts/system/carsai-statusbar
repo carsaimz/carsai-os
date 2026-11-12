@@ -1,0 +1,114 @@
+#!/bin/sh
+# carsai-statusbar - feeds the xfce4-genmon plugin on the Carsai OS top panel.
+#
+# Rich statusbar, zero dependencies: CPU %, RAM %, network down/up rates.
+# Left click opens btop in a terminal. Rate deltas are cached in one
+# state line under /tmp (refreshed by the plugin every few seconds).
+set -u
+
+STATE="${TMPDIR:-/tmp}/carsai-statusbar.state"
+
+fmt_bytes() {
+        awk -v b="$1" 'BEGIN {
+                if (b + 0 >= 1073741824) printf "%.1fG", b / 1073741824
+                else if (b + 0 >= 1048576) printf "%.1fM", b / 1048576
+                else if (b + 0 >= 1024) printf "%.0fK", b / 1024
+                else printf "%dB", b
+        }'
+}
+
+human_uptime() {
+        awk -v s="$1" 'BEGIN {
+                d = int(s / 86400); h = int((s % 86400) / 3600)
+                m = int((s % 3600) / 60)
+                if (d > 0) printf "%dd %dh %dm", d, h, m
+                else if (h > 0) printf "%dh %dm", h, m
+                else printf "%dm", m
+        }'
+}
+
+mem_pct() {
+        awk '/^MemTotal:/ { total = $2 }
+             /^MemAvailable:/ { avail = $2 }
+             END {
+                     if (total > 0) printf "%d", (total - avail) * 100 / total
+                     else printf "?"
+             }' /proc/meminfo
+}
+
+# Loads the cached state line: p_idle p_total p_now p_rx p_tx
+load_state() {
+        p_idle=0; p_total=0; p_now=0; p_rx=0; p_tx=0
+        if [ -r "$STATE" ]; then
+                read -r p_idle p_total p_now p_rx p_tx < "$STATE" 2>/dev/null || true
+        fi
+}
+
+save_state() {
+        # best-effort; genmon still works if the state file cannot be written
+        printf '%s %s %s %s %s\n' "$1" "$2" "$3" "$4" "$5" > "$STATE" 2>/dev/null || true
+}
+
+cpu_idle_total() {
+        # raw /proc/stat columns: user nice system idle iowait irq softirq steal
+        STATS=$(awk '/^cpu / {
+                idle = $5 + $6
+                total = $2 + $3 + $4 + $5 + $6 + $7 + $8 + $9
+                print idle, total
+        }' /proc/stat)
+        read -r IDLE TOTAL <<EOF
+$STATS
+EOF
+}
+
+net_now() {
+        iface=$(awk '$2 == "00000000" { print $1; exit }' /proc/net/route 2>/dev/null)
+        if [ -z "$iface" ] || [ ! -r "/sys/class/net/$iface/statistics/rx_bytes" ]; then
+                iface=""
+                RX=0; TX=0
+                return 0
+        fi
+        RX=$(cat "/sys/class/net/$iface/statistics/rx_bytes" 2>/dev/null || echo 0)
+        TX=$(cat "/sys/class/net/$iface/statistics/tx_bytes" 2>/dev/null || echo 0)
+}
+
+# /proc/uptime's first field is fractional (e.g. "1552.25"); keep integer seconds
+NOW=$(cut -d' ' -f1 /proc/uptime 2>/dev/null | cut -d. -f1 || echo 0)
+cpu_idle_total
+net_now
+load_state
+
+CPU_PCT=0
+if [ "$TOTAL" -gt "$p_total" ] && [ "$p_total" -gt 0 ]; then
+        d_total=$(( TOTAL - p_total ))
+        d_idle=$(( IDLE - p_idle ))
+        CPU_PCT=$(( (d_total - d_idle) * 100 / d_total ))
+fi
+
+DOWN="v --"
+UP="^ --"
+if [ -n "$iface" ] && [ "$NOW" -gt "$p_now" ] && [ "$p_now" -gt 0 ] && [ "$RX" -ge "$p_rx" ]; then
+        dt=$(( NOW - p_now ))
+        rxd=$(( (RX - p_rx) / dt ))
+        txd=$(( (TX - p_tx) / dt ))
+        DOWN="v $(fmt_bytes "$rxd")/s"
+        UP="^ $(fmt_bytes "$txd")/s"
+fi
+
+save_state "$IDLE" "$TOTAL" "$NOW" "$RX" "$TX"
+
+MEM=$(mem_pct)
+UP_STR=$(human_uptime "$NOW")
+KERNEL=$(uname -r)
+IP=$(hostname -I 2>/dev/null | awk '{ print $1 }')
+[ -n "$IP" ] || IP="--"
+
+printf '<txt>CPU %d%% | RAM %s%% | %s  %s</txt>\n' "$CPU_PCT" "$MEM" "$DOWN" "$UP"
+printf '<tool>Carsai OS statusbar\n'
+printf 'CPU: %d%%\n' "$CPU_PCT"
+printf 'RAM: %s%%\n' "$MEM"
+printf 'Rede: %s (%s)\n' "$iface" "$IP"
+printf 'Kernel: %s\n' "$KERNEL"
+printf 'Uptime: %s\n' "$UP_STR"
+printf '\nClique para abrir o btop.\n</tool>\n'
+printf '<click>xfce4-terminal --command=btop</click>\n'
