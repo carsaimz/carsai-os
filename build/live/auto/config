@@ -11,7 +11,7 @@ lb config noauto \
         --architecture amd64 \
         --apt-recommends false \
         --binary-images iso-hybrid \
-        --bootappend-live "boot=live components quiet" \
+        --bootappend-live "boot=live components quiet timezone=Africa/Maputo" \
         --debian-installer none \
         --iso-application "Carsai OS" \
         --iso-publisher "Carsai Mozambique; https://github.com/carsaimz; https://github.com/carsaimz/carsai-os" \
