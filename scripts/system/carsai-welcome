@@ -1,0 +1,18 @@
+#!/bin/sh
+# carsai-welcome - autostart hook that opens the Carsai OS welcome banner.
+#
+# The banner terminal only appears on the very first boot of the live
+# session (or of a fresh user account). Every later login this script
+# exits silently, so no terminal window pops up.
+set -u
+
+MARKER="$HOME/.config/carsai/welcome-done"
+
+if [ -e "$MARKER" ]; then
+        exit 0
+fi
+
+command -v xfce4-terminal >/dev/null 2>&1 || exit 0
+
+exec xfce4-terminal --hide-menubar --title="Carsai OS" \
+        --geometry=104x34+90+60 --command=carsai-banner

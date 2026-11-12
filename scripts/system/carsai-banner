@@ -1,0 +1,52 @@
+#!/bin/sh
+# carsai-banner - hacker-style welcome screen shown on first boot.
+#
+# Prints the Carsai OS ASCII art, system info (neofetch) and a shortcut
+# cheat sheet, then marks first boot as done. Invoked through
+# carsai-welcome (autostart) so it only ever opens once.
+set -u
+
+CYAN='\033[1;36m'
+MAGENTA='\033[1;35m'
+DIM='\033[2m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+ART="/usr/share/carsai/ascii.txt"
+[ -r "$ART" ] || ART="/dev/null"
+
+# mark first boot as done so carsai-welcome never pops up again
+mkdir -p "$HOME/.config/carsai" 2>/dev/null || true
+touch "$HOME/.config/carsai/welcome-done" 2>/dev/null || true
+
+clear
+printf '%b' "${MAGENTA}"
+cat "$ART"
+printf '%b' "${RESET}\n"
+printf '%b' "${BOLD}  Debian 12 (bookworm) + XFCE  |  ${DIM}github.com/carsaimz/carsai-os${RESET}\n\n"
+
+if command -v neofetch >/dev/null 2>&1; then
+        neofetch --ascii "$ART" --ascii_colors 6 5 2>/dev/null || true
+        printf '%b' "\n"
+fi
+
+printf '%b' "${CYAN}${BOLD}  ATALHOS${RESET}\n"
+printf '%b' "${DIM}  Win${RESET}            menu iniciar (whisker)\n"
+printf '%b' "${DIM}  Win+E${RESET}          gestor de ficheiros   ${DIM}Win+R${RESET}         executar app\n"
+printf '%b' "${DIM}  Win+D${RESET}          mostrar ambiente      ${DIM}Win+L${RESET}         bloquear ecran\n"
+printf '%b' "${DIM}  Win+V${RESET}          area de transferencia ${DIM}Win+setas${RESET}    snap de janelas\n"
+printf '%b' "${DIM}  Ctrl+Alt+T${RESET}     terminal              ${DIM}Win+Enter${RESET}     terminal\n"
+printf '%b' "${DIM}  Ctrl+Alt+Del${RESET}   gestor de tarefas     ${DIM}Ctrl+Win+<-/->${RESET} mudar workspace\n"
+printf '%b' "${DIM}  Print${RESET}          screenshot tela       ${DIM}Shift+Print${RESET}   screenshot regiao\n"
+printf '%b' "\n"
+printf '%b' "${CYAN}${BOLD}  COMANDOS CARSAI${RESET}\n"
+printf '%b' "${DIM}  carsai-theme-selector${RESET}   trocar tema (GTK + fundo + terminal + janelas)\n"
+printf '%b' "${DIM}  carsai-exe app.exe${RESET}      executar programas Windows (.exe via Wine)\n"
+printf '%b' "${DIM}  btop${RESET}                    monitor de sistema   ${DIM}ranger${RESET}   ficheiros no terminal\n"
+printf '%b' "\n"
+printf '%b' "${DIM}  a versao completa da documentacao esta em docs/ no repositorio.${RESET}\n\n"
+
+if [ -t 0 ]; then
+        printf '%b' "${DIM}  pressione ENTER para fechar...${RESET}"
+        read -r _dummy
+fi

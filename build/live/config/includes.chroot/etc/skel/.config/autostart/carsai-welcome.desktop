@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Carsai Welcome
+Comment=Shows the Carsai OS welcome banner on first login
+Exec=/usr/local/bin/carsai-welcome
+Terminal=false
+NoDisplay=true
+X-GNOME-Autostart-enabled=true

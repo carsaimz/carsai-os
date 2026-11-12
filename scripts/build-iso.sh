@@ -46,10 +46,22 @@ log "Syncing wallpapers..."
 mkdir -p "$INC/usr/share/backgrounds/carsai"
 cp "$BRANDING_SRC"/wallpapers/*.png "$INC/usr/share/backgrounds/carsai/"
 
+log "Syncing ASCII art + distributor icon..."
+mkdir -p "$INC/usr/share/carsai"
+cp "$BRANDING_SRC/carsai-ascii.txt" "$INC/usr/share/carsai/ascii.txt"
+mkdir -p "$INC/usr/share/icons/hicolor/scalable/apps"
+cp "$BRANDING_SRC/logo/carsai-os-icon.svg" \
+        "$INC/usr/share/icons/hicolor/scalable/apps/carsai-os.svg"
+
 log "Installing theme selector to /usr/local/bin..."
 mkdir -p "$INC/usr/local/bin"
 install -m 0755 "$THEMES_SRC/selector/carsai-theme-selector" \
         "$INC/usr/local/bin/carsai-theme-selector"
+
+log "Installing system scripts to /usr/local/bin..."
+for script in "$ROOT"/scripts/system/*; do
+        install -m 0755 "$script" "$INC/usr/local/bin/$(basename "$script")"
+done
 
 log "Installing terminal colour schemes..."
 mkdir -p "$INC/usr/share/carsai/terminal"
